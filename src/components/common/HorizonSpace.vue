@@ -1,12 +1,10 @@
 <template>
-  <div class="selector">
-    <el-button icon="el-icon-search" circle></el-button>
-  </div>
+  <div class="HorizonSpace"></div>
 </template>
 
 <script>
   export default {
-    name: "Selector",
+    name: "HorizonSpace",
     data(){
       return{
         img:null
@@ -16,4 +14,8 @@
 </script>
 
 <style scoped>
+.HorizonSpace{
+  width: 100%;
+  height: 20px;
+}
 </style>
