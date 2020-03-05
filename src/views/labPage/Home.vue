@@ -36,6 +36,32 @@
         <HorizonSpace/>
         <el-card shadow="hover">
             <div class="title">
+              活动记录
+            </div>
+            <HorizonSpace/>
+            <div class="block">
+              <el-timeline>
+                <el-timeline-item timestamp="2018/4/12" placement="top">
+                  <el-card shadow="hover">
+                    <h4>吃饭</h4>
+                  </el-card>
+                </el-timeline-item>
+                <el-timeline-item timestamp="2018/4/3" placement="top">
+                  <el-card shadow="hover">
+                    <h4>吃饭</h4>
+                  </el-card>
+                </el-timeline-item>
+                <el-timeline-item timestamp="2018/4/2" placement="top">
+                  <el-card shadow="hover">
+                    <h4>吃饭</h4>
+                  </el-card>
+                </el-timeline-item>
+              </el-timeline>
+            </div>
+          </el-card>
+        <HorizonSpace/>
+        <el-card shadow="hover">
+            <div class="title">
               项目记录
             </div>
             <HorizonSpace/>
@@ -81,6 +107,7 @@
             </div>
           </el-card>
         <HorizonSpace/>
+        
     </div>
   </div>
 </template>
