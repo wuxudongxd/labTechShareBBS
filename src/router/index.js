@@ -8,11 +8,16 @@ const Profile = () => import('@/views/profile/Profile');
 const Users = () => import('@/views/users/Users');
 const Login = () => import('@/components/content/login/Login')
 const Register = () => import('@/components/content/login/Register')
+const Lab= () => import('@/views/labPage/Home');
 
 const routes = [
   {
     path: '/',
-    redirect: '/home'
+    redirect: '/lab'
+  },
+  {
+    path: '/lab',
+    component: Lab
   },
   {
     path: '/home',
