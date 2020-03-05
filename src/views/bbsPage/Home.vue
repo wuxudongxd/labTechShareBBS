@@ -10,6 +10,8 @@
         <NotiPart/>
         <HorizonSpace/>
         <TutorPart/>
+        <HorizonSpace/>
+        <SharePart/>
       </div>
     </div>
   </div>
@@ -21,6 +23,7 @@
   import HorizonSpace from '@/components/common/HorizonSpace'
   import NotiPart from './Notification'
   import TutorPart from './Tutor'
+  import SharePart from './Share'
   export default {
     name: "Home",
     components: {
@@ -30,6 +33,7 @@
       HorizonSpace,
       NotiPart,
       TutorPart,
+      SharePart,
     }
   }
 </script>
@@ -49,5 +53,6 @@ width: 270px;
 }
 #Main{
     margin: 0 310px 0 20px;
+    
 }
 </style>
