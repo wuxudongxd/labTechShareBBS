@@ -3,16 +3,9 @@
     <el-card shadow="hover" >
       
       <div class='middle' >
-        一起在CUIT搞技术吧
+        肝帝排行榜
       </div>
       <HorizonSpace/>
-      <div class='middle' >
-        <el-button class='btn'  type="primary" round>登入</el-button>
-      </div>
-      <HorizonSpace/>
-      <div class='middle' >
-        <el-button class='btn'  type="primary" round>注册</el-button>
-      </div>
     </el-card>
   </div>
 </template>

@@ -5,6 +5,8 @@
       <div id="right_bar">
 
         <userBar/>
+        <HorizonSpace/>
+        <rankBar/>
       </div>
       <div id="Main">
         <NotiPart/>
@@ -12,6 +14,9 @@
         <TutorPart/>
         <HorizonSpace/>
         <SharePart/>
+        <HorizonSpace/>
+        <ProjectPart/>
+        <HorizonSpace/>
       </div>
     </div>
   </div>
@@ -20,10 +25,13 @@
 <script>
   import Selector from '@/components/content/selector/Selector'
   import userBar from '@/components/bars/UserBar'
+  import rankBar from '@/components/bars/RankBar'
   import HorizonSpace from '@/components/common/HorizonSpace'
   import NotiPart from './Notification'
   import TutorPart from './Tutor'
   import SharePart from './Share'
+  import ProjectPart from './Project'
+  
   export default {
     name: "Home",
     components: {
@@ -34,6 +42,8 @@
       NotiPart,
       TutorPart,
       SharePart,
+      ProjectPart,
+      rankBar,
     }
   }
 </script>
