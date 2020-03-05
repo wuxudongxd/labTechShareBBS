@@ -7,27 +7,37 @@
       </div>
       <HorizonSpace/>
       <div class='middle' >
-        <el-button class='btn'  type="primary" round>登入</el-button>
+        <el-button class='btn'  round @click="setLoginVisible(true)">登入</el-button>
       </div>
       <HorizonSpace/>
       <div class='middle' >
-        <el-button class='btn'  type="primary" round>注册</el-button>
+        <el-button class='btn'  round>注册</el-button>
       </div>
     </el-card>
+    <LoginDialogue ref="LoginDialogue"/>
   </div>
+  
+
 </template>
 
 <script>
   import HorizonSpace from '@/components/common/HorizonSpace'
+  import LoginDialogue from '@/components/dialogues/Login'
   export default {
     name: "UserBar",
     components: {
         HorizonSpace,
+        LoginDialogue,
+    },
+    methods:{
+      setLoginVisible(visible){
+        this.$refs.LoginDialogue.dialogVisible=visible;
+      }
     },
     data(){
       
       return{
-        img:null,
+        dialogVisible: false,
       }
     }
   }
