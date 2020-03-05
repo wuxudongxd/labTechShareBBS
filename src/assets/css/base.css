@@ -1,5 +1,5 @@
 @import "./normalize.css";
-
+@import "./common.css";
 :root {
   --color-text: #666;
   --color-high-text: #66B1FF;
