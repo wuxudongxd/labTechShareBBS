@@ -1,6 +1,8 @@
 <template>
   <div class="userBar">
-    <el-button type="info" plain>点击注册</el-button>
+    <el-card shadow="hover">
+      <el-button type="info" plain>点击注册</el-button>
+    </el-card>
   </div>
 </template>
 
@@ -16,10 +18,6 @@
 </script>
 
 <style scoped>
-  .userBar{
-    padding: 10px;
-    background-color: #E4E7ED;
-  }
   el-button{
     margin:0 auto;
   }

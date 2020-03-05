@@ -1,5 +1,5 @@
 <template>
-  <div id="labPage">
+  <div id="home">
     <div id="content">
         <el-carousel height="400px">
           <el-carousel-item v-for="item in 4" :key="item">
@@ -117,7 +117,7 @@
   import userBar from '@/components/bars/UserBar'
   import HorizonSpace from '@/components/common/HorizonSpace'
   export default {
-    name: "labPage",
+    name: "Home",
     components: {
       //Carousel,
       //Selector,
