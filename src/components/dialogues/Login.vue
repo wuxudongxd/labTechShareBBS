@@ -44,7 +44,6 @@
     },
     data(){
       return {
-        title:"登入",
         loginState:true,
         dialogVisible: false,
         form: {

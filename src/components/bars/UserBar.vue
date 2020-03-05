@@ -7,11 +7,11 @@
       </div>
       <HorizonSpace/>
       <div class='middle' >
-        <el-button class='btn'  round @click="setLoginVisible(true)">登入</el-button>
+        <el-button class='btn'  round @click="ShowLogin()">登入</el-button>
       </div>
       <HorizonSpace/>
       <div class='middle' >
-        <el-button class='btn'  round>注册</el-button>
+        <el-button class='btn'  round @click="ShowRegi()">注册</el-button>
       </div>
     </el-card>
     <LoginDialogue ref="LoginDialogue"/>
@@ -30,8 +30,13 @@
         LoginDialogue,
     },
     methods:{
-      setLoginVisible(visible){
-        this.$refs.LoginDialogue.dialogVisible=visible;
+      ShowLogin(){
+        this.$refs.LoginDialogue.loginState=true;
+        this.$refs.LoginDialogue.dialogVisible=true;
+      },
+      ShowRegi(){
+        this.$refs.LoginDialogue.loginState=false;
+        this.$refs.LoginDialogue.dialogVisible=true;
       }
     },
     data(){
