@@ -7,8 +7,8 @@
         </router-link>
       </div>
       <ul class="nav left" v-if="islab()">
-        <li>
-          <router-link to="/lab">首页</router-link>
+        <li >
+          <router-link to="/lab" >首页</router-link>
         </li>
         <li>
           <a @click="movepage(1)">易控简介</a>
@@ -25,10 +25,10 @@
       </ul>
       <ul class="nav left" v-if="!islab()">
         <li>
-          <router-link to="/bbs">首页</router-link>
+          <router-link to="/bbs/overview">首页</router-link>
         </li>
         <li>
-          <router-link to="/bbsIndex">检索</router-link>
+          <router-link to="/bbs/select">检索</router-link>
         </li>
       </ul>
 
@@ -83,7 +83,7 @@ export default {
   },
   methods: {
     toBBS() {
-      this.$router.push({ path: "/bbs" });
+      this.$router.push({ path: "/bbs/overview" });
     },
     islab() {
       return this.$route.path == "/lab" ? true : false;
