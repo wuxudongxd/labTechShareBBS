@@ -10,14 +10,18 @@
       </el-carousel>
       <HorizonSpace />
       <el-card shadow="hover">
-        <div class="title">{{LabName}}</div>
+        <div class="listshow1">
+          <div class="title">{{LabName}}</div>
+        </div>
         <!-- 实验室名称和简介card -->
         <HorizonSpace />
         <p style="text-indent:20px;line-height:40px">{{LabDiscribtion}}</p>
       </el-card>
       <HorizonSpace />
       <el-card shadow="hover">
-        <div class="title">培养方案</div>
+        <div class="listshow2">
+          <div class="title">培养方案</div>
+        </div>
         <HorizonSpace />
         <div>
           <!-- 培养方案介绍 -->
@@ -41,7 +45,9 @@
       </el-card>
       <HorizonSpace />
       <el-card shadow="hover">
-        <div class="title">活动记录</div>
+        <div class="listshow3">
+          <div class="title">活动记录</div>
+        </div>
         <HorizonSpace />
         <div class="block">
           <el-timeline>
@@ -66,7 +72,9 @@
       </el-card>
       <HorizonSpace />
       <el-card shadow="hover">
-        <div class="title">项目记录</div>
+        <div class="listshow4">
+          <div class="title">项目记录</div>
+        </div>
         <HorizonSpace />
         <div class="block">
           <el-timeline>
@@ -117,12 +125,13 @@
 <script>
 import userBar from "@/components/bars/UserBar";
 import HorizonSpace from "@/components/common/HorizonSpace";
+import Util from "@/assets/js/util.js";
 export default {
   name: "Home",
   data() {
     return {
       PPTNum: 4,
-      PPTsrc: "",
+      showIndex: null,
       LabName: "易控简介",
       LabDiscribtion:
         "易控实验室是一个由对技术充满热爱的小伙伴们组成的技术团体,并一直受到网络空间安全学院的大力支持，学院给予场地支持。易控实验室面向成都信息工程大学全体学生招新，积极参与校内外各项知名赛事斩获颇丰。",
@@ -172,13 +181,35 @@ export default {
       for (i = 0; i < num; i++) {
         return img_list[i];
       }
+    },
+    ShowDetails(num) {
+      var el = document.getElementsByClassName(`listshow${num}`)[0];
+      console.log(el.offsetTop);
+      if (this.showIndex == num) {
+        this.showIndex = null;
+      } else {
+        this.showIndex = num;
+      }
+      this.$nextTick(function() {
+        window.scrollTo({ behavior: "smooth", top: el.offsetTop - 100 });
+      });
     }
+  },
+  mounted() {
+    var that = this;
+    Util.$on("showDetails", num => {
+      console.log(num);
+      that.ShowDetails(num);
+    });
   },
   components: {
     //Carousel,
     //Selector,
     userBar,
     HorizonSpace
+  },
+  beforeDestroy() {
+    window.removeEventListener("scroll", this.handleFun);
   }
 };
 </script>
@@ -203,7 +234,7 @@ export default {
   font-size: 14px;
   opacity: 0.75;
   line-height: 150px;
-  margin: 0;
+  margin: 10px 10px;
 }
 
 .el-carousel__item:nth-child(2n) {
