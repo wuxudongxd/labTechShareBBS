@@ -57,7 +57,7 @@
         <el-button round @click="toBBS()" v-if="islab()">前往社区</el-button>
         <div class="login-box login-box2">
           
-          <router-link to="/login">登录</router-link>&nbsp;|&nbsp;
+          <router-link to="/lab">lab</router-link>&nbsp;|&nbsp;
           <router-link to="/register">注册</router-link>
         </div>
       </div>
