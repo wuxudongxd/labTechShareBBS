@@ -1,5 +1,6 @@
 <template>
   <div id="home">
+    <NavMenu/>
     <div id="content">
       <HorizonSpace/>
       <div id="right_bar">
@@ -31,6 +32,7 @@
   import TutorPart from './Tutor'
   import SharePart from './Share'
   import ProjectPart from './Project'
+  import NavMenu from "./NavMenu";
   
   export default {
     name: "Home",
@@ -44,13 +46,14 @@
       SharePart,
       ProjectPart,
       rankBar,
+      NavMenu,
     }
   }
 </script>
 
 <style scoped>
 #content{
-    min-width: 600px;
+    min-width: 820px;
     max-width: 1100px;
     margin: 0 auto;
     padding-top: 60px;
