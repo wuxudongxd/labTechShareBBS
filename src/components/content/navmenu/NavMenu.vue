@@ -2,9 +2,7 @@
   <div class="header">
     <div class="content">
       <div class="logo left">
-        <router-link to="/">
-          <img src="~assets/img/易控logo.png" alt="易控logo" />
-        </router-link>
+        <router-link to="/"><img src="~assets/img/易控logo.png" alt="易控logo" v-if="this.setcont()"></router-link>
       </div>
       <ul class="nav left">
         <li :key="key" v-for="(nav,key) in nav_list">
