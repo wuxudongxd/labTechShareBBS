@@ -174,7 +174,7 @@ export default {
         return img_list[i];
       }
     }
-  },
+  }
   components: {
     //Carousel,
     //Selector,

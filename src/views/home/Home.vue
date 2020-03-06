@@ -13,7 +13,6 @@
 
 <script>
   import Carousel from './childHome/Carousel'
-  import Selector from '@/components/content/selector/Selector'
   import userBar from '@/components/bars/UserBar'
   import HorizonSpace from '@/components/common/HorizonSpace'
   export default {

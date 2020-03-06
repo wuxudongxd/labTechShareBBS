@@ -67,22 +67,32 @@ export default {
 </script>
 
 <style scoped>
-.header {
-  width: 100%;
-  height: 60px;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.04);
-  padding: 0 100px 0 200px;
-  position: fixed;
-  margin: auto;
-  z-index: 99;
-  background: #fff;
-}
+  .header {
+    width: 100%;
+    height: 60px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+    position: fixed;
+    margin: auto;
+    z-index: 99;
+    background: #fff;
+  }
+  .content{
+      min-width: 600px;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 10px 0 10px;
+  }
+  .logo img{
+    width: 60px;
+    height: 60px;
+  }
 
-.logo img {
-  width: 60px;
-  height: 60px;
-}
+  .nav li {
+    float: left;
+    line-height: 60px;
+    margin:0 0 20px 30px;
+  }
 
 .nav li {
   float: left;
