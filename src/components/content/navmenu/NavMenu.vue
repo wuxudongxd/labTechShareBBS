@@ -7,18 +7,20 @@
         </router-link>
       </div>
       <ul class="nav left" v-if="islab()">
-        <li herf="/">首页</li>
         <li>
-          <p @click="movepage(1)">易控简介</p>
+          <router-link to="/lab">首页</router-link>
         </li>
         <li>
-          <p @click="movepage(2)">培养方案</p>
+          <a @click="movepage(1)">易控简介</a>
         </li>
         <li>
-          <p @click="movepage(3)">活动记录</p>
+          <a @click="movepage(2)">培养方案</a>
         </li>
         <li>
-          <p @click="movepage(4)">活动记录</p>
+          <a @click="movepage(3)">活动记录</a>
+        </li>
+        <li>
+          <a @click="movepage(4)">活动记录</a>
         </li>
       </ul>
       <ul class="nav left" v-if="!islab()">

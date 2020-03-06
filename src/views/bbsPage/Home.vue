@@ -9,6 +9,7 @@
         <rankBar/>
       </div>
       <div id="Main">
+        <router-view></router-view>
         <NotiPart/>
         <HorizonSpace/>
         <TutorPart/>
