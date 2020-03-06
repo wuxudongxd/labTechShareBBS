@@ -1,6 +1,5 @@
 <template>
   <div id="home">
-    <NavMenu/>
     <div id="content">
       <HorizonSpace/>
       <div id="right_bar">
@@ -24,7 +23,6 @@
 </template>
 
 <script>
-  import Selector from '@/components/content/selector/Selector'
   import userBar from '@/components/bars/UserBar'
   import rankBar from '@/components/bars/RankBar'
   import HorizonSpace from '@/components/common/HorizonSpace'
@@ -32,7 +30,6 @@
   import TutorPart from './Tutor'
   import SharePart from './Share'
   import ProjectPart from './Project'
-  import NavMenu from "./NavMenu";
   
   export default {
     name: "Home",
@@ -46,7 +43,6 @@
       SharePart,
       ProjectPart,
       rankBar,
-      NavMenu,
     }
   }
 </script>
