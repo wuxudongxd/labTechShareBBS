@@ -115,7 +115,6 @@
 </template>
 
 <script>
-import Selector from "@/components/content/selector/Selector";
 import userBar from "@/components/bars/UserBar";
 import HorizonSpace from "@/components/common/HorizonSpace";
 export default {
@@ -174,7 +173,7 @@ export default {
         return img_list[i];
       }
     }
-  }
+  },
   components: {
     //Carousel,
     //Selector,

@@ -57,9 +57,14 @@ export default {
     };
   },
   methods: {
+
+    setcont(){
+      this.$route.name=="lab"?true:false;
+    },
     handleSelect(key, keyPath) {
       // console.log(key, keyPath);
     }
+    
   }
 };
 </script>
