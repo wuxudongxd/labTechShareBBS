@@ -10,14 +10,7 @@
       </div>
       <div id="Main">
         <router-view></router-view>
-        <NotiPart/>
-        <HorizonSpace/>
-        <TutorPart/>
-        <HorizonSpace/>
-        <SharePart/>
-        <HorizonSpace/>
-        <ProjectPart/>
-        <HorizonSpace/>
+        
       </div>
     </div>
   </div>
@@ -27,10 +20,6 @@
   import userBar from '@/components/bars/UserBar'
   import rankBar from '@/components/bars/RankBar'
   import HorizonSpace from '@/components/common/HorizonSpace'
-  import NotiPart from './Notification'
-  import TutorPart from './Tutor'
-  import SharePart from './Share'
-  import ProjectPart from './Project'
   
   export default {
     name: "Home",
@@ -39,10 +28,7 @@
       //Selector,
       userBar,
       HorizonSpace,
-      NotiPart,
-      TutorPart,
-      SharePart,
-      ProjectPart,
+      
       rankBar,
     }
   }

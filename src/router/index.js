@@ -10,7 +10,7 @@ const Login = () => import('@/components/content/login/Login')
 const Register = () => import('@/components/content/login/Register')
 const Lab= () => import('@/views/labPage/Home');
 const BBS=() => import('@/views/bbsPage/Home');
-const BBS_Overview=() => import('@/views/bbsPage/Home');
+const BBS_Overview=() => import('@/views/bbsPage/mainParts/Overview');
 const BBS_Select=() => import('@/views/bbsPage/Home');
 const routes = [
   {
