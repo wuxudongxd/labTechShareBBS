@@ -59,7 +59,8 @@ export default {
   methods: {
 
     setcont(){
-      this.$route.name=="lab"?true:false;
+      console.log("adsadd:"+this.$route.path);
+      return this.$route.path=="/lab"?true:false;
     },
     handleSelect(key, keyPath) {
       // console.log(key, keyPath);
