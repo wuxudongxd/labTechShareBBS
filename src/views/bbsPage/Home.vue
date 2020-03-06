@@ -33,6 +33,11 @@
   
   export default {
     name: "Home",
+    watch: {
+      $route(to, from) {
+          console.log(this.$route.path);
+      }
+    },
     components: {
       //Carousel,
       //Selector,
