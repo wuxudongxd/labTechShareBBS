@@ -7,7 +7,7 @@
         <el-main>
           <router-view></router-view>
         </el-main>
-        <el-aside width="250px">
+        <el-aside width="250px" id="sidebar">
           <HorizonSpace/>
           <userBar/>
           <HorizonSpace/>
@@ -65,5 +65,8 @@ width: 270px;
 #Main{
     margin: 0 310px 0 20px;
     
+}
+#sidebar{
+  margin-right: 20px;
 }
 </style>
