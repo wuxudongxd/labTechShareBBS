@@ -6,9 +6,8 @@
           <router-link to="/">
             <img style="width:60px;" src="~assets/img/易控logo.png" alt="易控logo" v-if="this.islab()" />
           </router-link>
-          <router-link to="/">
-            <img style="width:200px; margin-left:20px; margin-top:10px;" src="~assets/img/CUITechs.png" alt="易控logo" v-if="!this.islab()" />
-          </router-link>
+          <img style="width:200px; margin-left:20px; margin-top:10px;" src="~assets/img/CUITechs.png" alt="易控logo" v-if="!this.islab()" />
+          
         </div>
         <ul class="nav left" v-if="islab()">
           <li >
@@ -33,6 +32,9 @@
           </li>
           <li>
             <router-link to="/bbs/select">检索</router-link>
+          </li>
+          <li>
+            <router-link to="/bbs/about">关于</router-link>
           </li>
         </ul>
       </div>
