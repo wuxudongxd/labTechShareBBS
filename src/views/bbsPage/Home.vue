@@ -50,7 +50,7 @@
 
 <style scoped>
 #content{
-    min-width: 820px;
+    min-width: 800px;
     max-width: 1100px;
     margin: 0 auto;
     padding-top: 60px;

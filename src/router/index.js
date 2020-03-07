@@ -12,6 +12,7 @@ const Lab= () => import('@/views/labPage/Home');
 const BBS=() => import('@/views/bbsPage/Home');
 const BBS_Overview=() => import('@/views/bbsPage/mainParts/Overview');
 const BBS_Select=() => import('@/views/bbsPage/mainParts/Select');
+const BBS_About=() => import('@/views/bbsPage/mainParts/About');
 const routes = [
   {
     path: '/',
@@ -41,6 +42,7 @@ const routes = [
         // 当 /user/:id/posts 匹配成功
         // UserPosts 会被渲染在 User 的 <router-view> 中
         path: 'about',
+        component: BBS_About,
       },
       // 当 /user/:id 匹配成功，
       // UserHome 会被渲染在 User 的 <router-view> 中
