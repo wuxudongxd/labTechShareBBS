@@ -37,6 +37,11 @@ const routes = [
         path: 'select',
         component: BBS_Select
       },
+      {
+        // 当 /user/:id/posts 匹配成功
+        // UserPosts 会被渲染在 User 的 <router-view> 中
+        path: 'about',
+      },
       // 当 /user/:id 匹配成功，
       // UserHome 会被渲染在 User 的 <router-view> 中
        // ...其他子路由     
