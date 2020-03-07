@@ -17,6 +17,24 @@
         <span>希望能够给cuit默默做技术的人带来一个良好的 学习 交流 分享 的平台。也有利于学校各种比赛技术资源的沉淀。</span>
       </div>
     </el-card>
+    <HorizonSpace/>
+    <el-card :body-style="{ padding: '0px' }"  shadow="hover">
+      <div slot="header" class="clearfix">
+        <span>历程</span>
+      </div>
+      <div style="padding: 14px;">
+        <el-timeline>
+          <el-timeline-item timestamp="2020/3/5" placement="top">
+            <div style="display:inline-block;">
+              <el-card>
+                <h4>开始建设</h4>
+              </el-card>
+            </div>
+            
+          </el-timeline-item>
+        </el-timeline>
+      </div>
+    </el-card>
   </div>
 </template>
 
