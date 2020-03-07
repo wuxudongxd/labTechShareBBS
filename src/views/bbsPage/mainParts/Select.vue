@@ -1,37 +1,118 @@
 <template>
-  <div class="Notification">
-    <el-card :body-style="{ padding: '0px' }"  shadow="hover">
-      <el-row>
-        <el-col :span="18">
-          <div class="grid-content bg-purple">
-            <div class="block">
-              <span class="demonstration">默认 Hover 指示器触发</span>
-              <el-carousel height="150px">
-                <el-carousel-item v-for="item in 4" :key="item">
-                  <h3 class="small">{{ item }}</h3>
-                </el-carousel-item>
-              </el-carousel>
-            </div>
+  <div class="selectBar">
+    <el-row :gutter="20" id="selector">
+      <el-col :span="8">
+        <el-select
+          v-model="value"
+          style="width:100%"
+          multiple
+          filterable
+          allow-create
+          default-first-option
+          placeholder="选择类别进行筛选">
+          <el-option
+            v-for="item in options"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+          </el-option>
+        </el-select>
+      </el-col>
+      <el-col :span="8">
+        <el-select
+          v-model="value"
+          style="width:100%"
+          multiple
+          filterable
+          allow-create
+          default-first-option
+          placeholder="选择实验室进行筛选">
+          <el-option
+            v-for="item in options"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+          </el-option>
+        </el-select>
+      </el-col>
+      <el-col :span="8">
+        <el-select
+        
+        v-model="value"
+        style="width:100%"
+        multiple
+        filterable
+        allow-create
+        default-first-option
+        placeholder="选择技术栈进行删选">
+        <el-option
+          v-for="item in options"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value">
+        </el-option>
+      </el-select>
+      </el-col>
+    </el-row>
+    <HorizonSpace/>
+    <el-row :gutter="20">
+      <el-col :span="12">
+        <el-card :body-style="{ padding: '0px' }"  shadow="hover">
+          <div style="padding: 14px;">
+            <span>这里放官方教学</span>
           </div>
-        </el-col>
-        <el-col :span="6"><div class="grid-content bg-purple-light">
-          
-          </div></el-col>
-      </el-row>
-      
-      <div style="padding: 14px;">
-        <span>这里放通告。比如说实验室比赛什么的</span>
-      </div>
-    </el-card>
+        </el-card>
+      </el-col>
+      <el-col :span="12">
+        <el-card :body-style="{ padding: '0px' }"  shadow="hover">
+          <div style="padding: 14px;">
+            <span>这里放问答版块</span>
+          </div>
+        </el-card>
+      </el-col>
+    </el-row>
+    <HorizonSpace/>
+    <el-row :gutter="20">
+      <el-col :span="12">
+        <el-card :body-style="{ padding: '0px' }"  shadow="hover">
+          <div style="padding: 14px;">
+            <span>这里放官方教学</span>
+          </div>
+        </el-card>
+      </el-col>
+      <el-col :span="12">
+        <el-card :body-style="{ padding: '0px' }"  shadow="hover">
+          <div style="padding: 14px;">
+            <span>这里放问答版块</span>
+          </div>
+        </el-card>
+      </el-col>
+    </el-row>
   </div>
 </template>
 
 <script>
+  import HorizonSpace from '@/components/common/HorizonSpace'
   export default {
-    name: "Notification",
+    name: "selectBar",
+    components: {
+      
+      HorizonSpace,
+    },
     data(){
       return{
-        img:null
+        options: [{
+          value: 'HTML',
+          label: 'HTML'
+        }, {
+          value: 'CSS',
+          label: 'CSS'
+        }, {
+          value: 'JavaScript',
+          label: 'JavaScript'
+        }],
+        img:null,
+        value: [],
       }
     }
   }

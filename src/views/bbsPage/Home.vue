@@ -1,8 +1,22 @@
 <template>
   <div id="home">
     <div id="content">
-      <HorizonSpace/>
-      <div id="right_bar">
+
+      <el-container>
+        
+        <el-main>
+          <router-view></router-view>
+        </el-main>
+        <el-aside width="250px">
+          <HorizonSpace/>
+          <userBar/>
+          <HorizonSpace/>
+          <rankBar/>
+          <HorizonSpace/>
+        </el-aside>
+      </el-container>
+
+      <!-- <div id="right_bar">
 
         <userBar/>
         <HorizonSpace/>
@@ -11,7 +25,7 @@
       <div id="Main">
         <router-view></router-view>
         
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -41,6 +55,7 @@
     margin: 0 auto;
     padding-top: 60px;
     
+    height: 100%;
 }
 #right_bar{
 width: 270px;
