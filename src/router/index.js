@@ -10,6 +10,7 @@ const Login = () => import('@/components/content/login/Login')
 const Register = () => import('@/components/content/login/Register')
 const Lab= () => import('@/views/labPage/Home');
 const BBS=() => import('@/views/bbsPage/Home');
+const BBS_Personal=() => import('@/views/bbsPage/Personal');
 const BBS_Overview=() => import('@/views/bbsPage/mainParts/Overview');
 const BBS_Select=() => import('@/views/bbsPage/mainParts/Select');
 const BBS_About=() => import('@/views/bbsPage/mainParts/About');
@@ -25,6 +26,7 @@ const routes = [
   {
     path: '/bbs',
     component: BBS,
+    redirect: '/bbs/overview',
     children: [
       {
         // 当 /user/:id/profile 匹配成功，
@@ -56,6 +58,10 @@ const routes = [
   {
     path: '/users',
     component: Users
+  },
+  {
+    path: '/person',
+    component: BBS_Personal
   },
   {
     path: '/profile',
