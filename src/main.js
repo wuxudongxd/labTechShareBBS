@@ -12,6 +12,18 @@ Vue.use(VueCookies);
 
 Vue.config.productionTip = false
 
+router.beforeEach((to, from, next) => {
+
+    if (to.matched.some(record => record.meta.requireAuth)&&store.state.token==''){ // 判断该路由是否需要登录权限
+      next({
+  
+        path: '/bbs',
+
+      })
+    }else{
+      next();
+    } 
+})
 new Vue({
   router,
   store,

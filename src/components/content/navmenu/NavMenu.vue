@@ -64,13 +64,14 @@
 
         <div v-if="!token" class="login-bar right">
           <el-button round @click="toBBS()" v-if="islab()">前往社区</el-button>
+          <el-button round @click="exit()" v-if="!islab()&&this.$store.state.token!=''" style="margin-right:10px;">退出</el-button>
+          
           <div class="login-box login-box2">
             <router-link to="/lab">lab</router-link>&nbsp;|&nbsp;
             <router-link to="/register">注册</router-link>
           </div>
         </div>
       </div>
-      
 
       
     </div>
@@ -93,6 +94,22 @@ export default {
     };
   },
   methods: {
+    exit(){
+      this.$confirm('确认要退出账号吗？')
+          .then(_ => {
+            this.$store.commit('setToken', '');
+            this.$notify.info({
+              title: '消息',
+              message: '您已经退出账号',
+              duration: 2000
+            });
+            if (this.$route.matched.some(record => record.meta.requireAuth)){
+              this.$router.push({ path: "/bbs/overview" });
+            }
+          })
+          .catch(_ => {});
+      
+    },
     toBBS() {
       this.$router.push({ path: "/bbs/overview" });
     },

@@ -23,14 +23,15 @@
         个人博客:<br/>sdahsuhdasdasdadasdasdasfaddsasafadfsaad
         <HorizonSpace/>
         实验室:<br/>sdahsuhdasdasdadasdasdasfaddsasafadfsaad
+        <HorizonSpace/>
+        <div class="btns">
+          <el-tooltip class="item" effect="dark" content="发布自己的分享" placement="top">
+            <el-button icon="el-icon-edit" circle></el-button>
+          </el-tooltip>
+          <el-button plain round style="width:100%;" @click="toPerson()">个人页</el-button>
+        </div>
       </div>
-      <HorizonSpace/>
-      <div class="btns">
-        <el-tooltip class="item" effect="dark" content="发布自己的分享" placement="top">
-          <el-button icon="el-icon-edit" circle></el-button>
-        </el-tooltip>
-        <el-button plain round style="width:100%;" @click="toPerson()">个人页</el-button>
-      </div>
+      
       
     </el-card>
     <LoginDialogue v-if="$store.state.token==''" ref="LoginDialogue"/>
