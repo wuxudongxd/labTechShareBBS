@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <NavMenu/>
+    <el-collapse-transition>
     <router-view></router-view>
+    </el-collapse-transition>
   </div>
 </template>
 

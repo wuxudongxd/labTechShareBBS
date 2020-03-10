@@ -5,9 +5,11 @@
       <el-container>
         
         <el-main>
-          <router-view></router-view>
+          <el-collapse-transition>
+            <router-view></router-view>
+          </el-collapse-transition>
         </el-main>
-        <el-aside width="250px" id="sidebar">
+        <el-aside width="250px">
           <HorizonSpace/>
           <userBar/>
           <HorizonSpace/>
@@ -49,8 +51,26 @@
 </script>
 
 <style scoped>
+.v-enter{
+ opacity: 0;
+}
+.v-enter-active{
+ transition: 0.25s;
+}
+.v-enter-to{
+ opacity: 1;
+}
+.v-leave{
+ opacity: 1;
+}
+.v-leave-to{
+ opacity:0;
+}
+.v-leave-active{
+ transition: 0.25s;
+}
 #content{
-    min-width: 800px;
+    min-width: 820px;
     max-width: 1100px;
     margin: 0 auto;
     padding-top: 60px;
@@ -65,8 +85,5 @@ width: 270px;
 #Main{
     margin: 0 310px 0 20px;
     
-}
-#sidebar{
-  margin-right: 20px;
 }
 </style>
