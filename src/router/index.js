@@ -14,6 +14,7 @@ const BBS_Personal=() => import('@/views/bbsPage/Personal');
 const BBS_Overview=() => import('@/views/bbsPage/mainParts/Overview');
 const BBS_Select=() => import('@/views/bbsPage/mainParts/Select');
 const BBS_About=() => import('@/views/bbsPage/mainParts/About');
+const BBS_Write=() => import('@/views/bbsPage/mainParts/Write');
 const routes = [
   {
     path: '/',
@@ -45,6 +46,15 @@ const routes = [
         // UserPosts 会被渲染在 User 的 <router-view> 中
         path: 'about',
         component: BBS_About,
+      },
+      {
+        // 当 /user/:id/posts 匹配成功
+        // UserPosts 会被渲染在 User 的 <router-view> 中
+        path: 'write',
+        component: BBS_Write,
+        meta: {
+          requireAuth: true // 添加该字段，表示进入这个路由是需要登录的
+        }
       },
       // 当 /user/:id 匹配成功，
       // UserHome 会被渲染在 User 的 <router-view> 中

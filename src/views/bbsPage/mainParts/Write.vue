@@ -1,71 +1,90 @@
 <template>
   <div class="selectBar">
-    <el-card :body-style="{ padding: '0px' }"  shadow="hover">
-      <div slot="header" class="clearfix">
-        <span>关于建立</span>
+    <el-card  shadow="hover">
+      <div class="articlehead">
+        <div>
+          类型：
+          <el-select v-model="value" placeholder="请选择">
+            <el-option
+              v-for="item in options"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value">
+            </el-option>
+          </el-select>
+        </div>
+        <el-button type="primary" icon="el-icon-check" circle></el-button>
       </div>
-      <div style="padding: 14px;">
-        <span>由 易控实验室 和 电子爱好者协会 合作建立，基于 vue 和 django。</span>
-      </div>
+      <HorizonSpace/>
+      <el-input
+        type="text"
+        placeholder="请输入标题"
+        v-model="title"
+        maxlength="20"
+        show-word-limit
+      >
+      </el-input>
+
     </el-card>
     <HorizonSpace/>
-    <el-card :body-style="{ padding: '0px' }"  shadow="hover">
-      <div slot="header" class="clearfix">
-        <span>我们的愿景</span>
-      </div>
-      <div style="padding: 14px;">
-        <p>希望能够给cuit默默做技术的人带来一个良好的 学习 交流 分享 的平台。</p>
-        <p>也有利于学校各种比赛技术资源的沉淀。</p>
-        <p>也能够加深实验室之间的互动合作。</p>
-      </div>
-    </el-card>
+      <mavon-editor 
+            v-model="content" 
+            ref="md" 
+            @change="change" 
+            style="min-height: 600px"
+        />
+    
     <HorizonSpace/>
-    <el-card :body-style="{ padding: '0px' }"  shadow="hover">
-      <div slot="header" class="clearfix">
-        <span>历程</span>
-      </div>
-      <div style="padding: 14px;">
-        <el-timeline>
-          <el-timeline-item timestamp="2020/3/5" placement="top">
-            <div style="display:inline-block;">
-              <el-card>
-                <h4>开始建设</h4>
-              </el-card>
-            </div>
-            
-          </el-timeline-item>
-        </el-timeline>
-      </div>
-    </el-card>
   </div>
 </template>
 
 <script>
   import HorizonSpace from '@/components/common/HorizonSpace'
+  import { mavonEditor } from 'mavon-editor'
+  import 'mavon-editor/dist/css/index.css'
   export default {
     name: "selectBar",
     components: {
-      
+        mavonEditor,
+    
       HorizonSpace,
     },
     data(){
       return{
-        options: [{
-          value: 'HTML',
-          label: 'HTML'
+        content:'', // 输入的markdown
+            html:'',    // 及时转的html
+            options: [{
+          value: '选项1',
+          label: '黄金糕'
         }, {
-          value: 'CSS',
-          label: 'CSS'
+          value: '选项2',
+          label: '双皮奶'
         }, {
-          value: 'JavaScript',
-          label: 'JavaScript'
+          value: '选项3',
+          label: '蚵仔煎'
+        }, {
+          value: '选项4',
+          label: '龙须面'
+        }, {
+          value: '选项5',
+          label: '北京烤鸭'
         }],
-        img:null,
-        value: [],
+        value: '',
+        title:'',
       }
+    },
+    methods:{
+      change(value, render){
+            // render 为 markdown 解析后的结果[html]
+            this.html = render;
+      },
     }
   }
 </script>
 
 <style scoped>
+.articlehead{
+  display: flex;
+  justify-content:space-between;
+}
 </style>

@@ -12,9 +12,6 @@
 .title:hover{
     color: rgb(111, 183, 255);
 }
-.el-dialog{
-    transition: height 2s;
-    -moz-transition: height 2s;	/* Firefox 4 */
-    -webkit-transition: height 2s;	/* Safari 和 Chrome */
-    -o-transition: height 2s;
-}
+.dropdown-item:nth-child(2){
+    display: none;
+  }

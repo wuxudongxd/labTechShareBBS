@@ -23,6 +23,14 @@ router.beforeEach((to, from, next) => {
     }else{
       next();
     } 
+    if(from.path=='/bbs/write'){
+      const answer = window.confirm('当前文章内容未上传，确定要离开？')
+      if (answer) {
+          next()
+      } else {
+          next(from)
+      }
+    }
 })
 new Vue({
   router,

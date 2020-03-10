@@ -25,8 +25,8 @@
         实验室:<br/>sdahsuhdasdasdadasdasdasfaddsasafadfsaad
         <HorizonSpace/>
         <div class="btns">
-          <el-tooltip class="item" effect="dark" content="发布自己的分享" placement="top">
-            <el-button icon="el-icon-edit" circle></el-button>
+          <el-tooltip class="item" effect="dark" content="发布自己的分享" placement="top" v-if="$route.path!='/bbs/write'">
+            <el-button icon="el-icon-edit" circle @click="toWrite()"></el-button>
           </el-tooltip>
           <el-button plain round style="width:100%;" @click="toPerson()">个人页</el-button>
         </div>
@@ -62,8 +62,11 @@
         this.$refs.LoginDialogue.dialogVisible=true;
       },
       toPerson() {
-      this.$router.push({ path: "/person" });
-    },
+        this.$router.push({ path: "/person" });
+      },
+      toWrite() {
+        this.$router.push({ path: "/bbs/write" });
+      },
     },
     data(){
       
