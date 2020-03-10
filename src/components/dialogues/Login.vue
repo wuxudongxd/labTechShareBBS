@@ -68,6 +68,7 @@
                 switch (res.data.code) {
                   case 1001:
                     console.log("hhhhhh");
+                    this.$store.commit('setToken', res.data.token);
                     break;
                   case 1000:
                     this.$alert('密码错误，请重新输入密码', '警告', {
