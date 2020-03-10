@@ -2,7 +2,7 @@
   <div id="app">
     <NavMenu/>
     <el-collapse-transition>
-    <router-view></router-view>
+      <router-view></router-view>
     </el-collapse-transition>
   </div>
 </template>
@@ -19,5 +19,9 @@
 
 <style scoped>
   @import "assets/css/base.css";
-
+  #app{
+    width: 100%;
+    height: 100vh;
+    overflow-y:scroll;
+  }
 </style>

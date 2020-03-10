@@ -191,7 +191,7 @@ export default {
         this.showIndex = num;
       }
       this.$nextTick(function() {
-        window.scrollTo({ behavior: "smooth", top: el.offsetTop - 100 });
+        document.getElementById('app').scrollTo({ behavior: "smooth", top: el.offsetTop - 100 });
       });
     }
   },
