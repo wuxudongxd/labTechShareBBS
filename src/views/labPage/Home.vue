@@ -219,7 +219,6 @@ export default {
   min-width: 600px;
   max-width: 1100px;
   margin: 0 auto;
-  padding-top: 60px;
 }
 #right_bar {
   width: 270px;
