@@ -26,6 +26,18 @@
       </div>
       <div style="padding: 14px;">
         <el-timeline>
+          <el-timeline-item timestamp="2020/3/18" placement="top">
+            <div style="display:inline-block;">
+              <el-card>
+                <h4>前端🍔咕咕一周，继续建设</h4>
+              </el-card>
+            </div>
+            
+          </el-timeline-item>
+        </el-timeline>
+      </div>
+      <div style="padding: 14px;">
+        <el-timeline>
           <el-timeline-item timestamp="2020/3/5" placement="top">
             <div style="display:inline-block;">
               <el-card>

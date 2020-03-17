@@ -28,7 +28,7 @@
 
 <script>
   import HorizonSpace from '@/components/common/HorizonSpace'
-  import {Login, GetSms} from "@/network/users";
+  import {Login, GetSms,Register} from "@/network/users";
   import {checkUsername, checkPassword, checkCode} from '@/utils/validate'
 
   export default {
@@ -65,14 +65,42 @@
                 password: this.form.pw0,
               }).then(res => {
                 console.log(res);
-                switch (res.data.code) {
-                  case 1001:
-                    console.log("hhhhhh");
-                    this.$store.commit('setToken', res.data.token);
-                    break;
-                  case 1000:
-                    this.$alert('密码错误，请重新输入密码', '警告', {
+                if(res==null){
+                  this.$alert('用户名或密码错误', '警告', {
                       confirmButtonText: '确定',
+                    });
+                }
+                if(res!=undefined&&res.data.token&&res.data.token!=''){
+                  this.$store.commit('setToken', res.data.token);//调用全局函数设置token状态
+                }else{
+                    this.$alert('用户名或密码错误', '警告', {
+                      confirmButtonText: '确定',
+                    });
+                    this.loading=false;
+                }
+                
+              }).catch(err => {
+                this.loading=false;
+                console.log(err);
+              })
+            }else{
+              Register({
+                username: this.form.name,
+                password: this.form.pw0,
+              }).then(res => {
+                console.log(res);
+                switch (res.data.code) {
+                  case 0:
+                    this.$alert('注册成功', '提示', {
+                      confirmButtonText: '前往登入',
+                    });
+                    console.log("hhhhhh");
+                    this.loginState=true;
+                    this.loading=false;
+                    break;
+                  case 1:
+                    this.$alert('注册失败，用户名已存在', '提示', {
+                      confirmButtonText: '确认',
                     });
                     this.loading=false;
                     break;
@@ -84,8 +112,6 @@
                 this.loading=false;
                 console.log(err);
               })
-            }else{
-
             }
           }
         })

@@ -14,6 +14,14 @@ export function Login(data) {
   })
 }
 
+export function Register(data) {
+  return request({
+    method:'post',
+    url:'/api/register/',
+    data
+  })
+}
+
 export function GetSms(data) {
   return request({
     method:'get',

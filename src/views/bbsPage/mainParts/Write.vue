@@ -2,28 +2,24 @@
   <div class="selectBar">
     <el-card  shadow="hover">
       <div class="articlehead">
+        <el-input
+          class="titleset"
+          type="text"
+          placeholder="请输入标题"
+          v-model="title"
+          maxlength="20"
+          show-word-limit
+        >
+        </el-input>
         <div>
-          类型：
-          <el-select v-model="value" placeholder="请选择">
-            <el-option
-              v-for="item in options"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value">
-            </el-option>
-          </el-select>
+          <el-button round class="btn">设置类别</el-button>
+          <el-tooltip class="item" effect="dark" content="发布文章" placement="right">
+            <el-button type="primary" icon="el-icon-check" circle></el-button>
+          </el-tooltip>
+          
         </div>
-        <el-button type="primary" icon="el-icon-check" circle></el-button>
       </div>
-      <HorizonSpace/>
-      <el-input
-        type="text"
-        placeholder="请输入标题"
-        v-model="title"
-        maxlength="20"
-        show-word-limit
-      >
-      </el-input>
+      
 
     </el-card>
     <HorizonSpace/>
@@ -86,5 +82,8 @@
 .articlehead{
   display: flex;
   justify-content:space-between;
+}
+.articlehead .titleset{
+  max-width: 500px;
 }
 </style>
