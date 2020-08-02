@@ -1,7 +1,7 @@
 <template>
   <div class="userBar">
     <el-card shadow="hover" >
-      <div v-if="$store.state.token==''">
+      <div v-if="this.$store.state.userinfo==null">
         <div class='middle' >
           一起在CUIT搞技术吧
         </div>
@@ -14,27 +14,25 @@
           <el-button class='btn'  round @click="ShowRegi()">注册</el-button>
         </div>
       </div>
-      <div v-if="$store.state.token!=''">
+      <div v-if="this.$store.state.userinfo!=null">
         <div class="head">
           <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png" class="image">
-          <p class="username">用户名</p>
+          <p class="username">{{this.$store.state.userinfo.name}}</p>
         </div>
         <HorizonSpace/>
-        个人博客:<br/>sdahsuhdasdasdadasdasdasfaddsasafadfsaad
-        <HorizonSpace/>
-        实验室:<br/>sdahsuhdasdasdadasdasdasfaddsasafadfsaad
+        <hr color=#EBEEF5 SIZE=1 style="margin: 0 -20px">
         <HorizonSpace/>
         <div class="btns">
-          <el-tooltip class="item" effect="dark" content="发布自己的分享" placement="top" v-if="$route.path!='/bbs/write'">
+          <el-tooltip class="item" effect="dark" content="发布自己的新分享" placement="top" v-if="$route.path!='/bbs/write'">
             <el-button icon="el-icon-edit" circle @click="toWrite()"></el-button>
           </el-tooltip>
-          <el-button plain round style="width:100%;" @click="toPerson()">个人页</el-button>
+          <el-button round style="width:100%;" @click="toPerson()">个人页</el-button>
         </div>
       </div>
       
       
     </el-card>
-    <LoginDialogue v-if="$store.state.token==''" ref="LoginDialogue"/>
+    <LoginDialogue v-if="this.$store.state.userinfo==null" ref="LoginDialogue"/>
   </div>
   
 
@@ -50,7 +48,7 @@
         LoginDialogue,
     },
     mounted(){
-      console.log(this.$store.state.token);
+      console.log(this.$store.state.userinfo);
     },
     methods:{
       ShowLogin(){
@@ -62,7 +60,7 @@
         this.$refs.LoginDialogue.dialogVisible=true;
       },
       toPerson() {
-        this.$router.push({ path: "/person" });
+        this.$router.push({ path: "/person/"+this.$store.state.userinfo.id });
       },
       toWrite() {
         this.$router.push({ path: "/bbs/write" });
@@ -87,7 +85,7 @@
   }
   .head .username{
     margin-left: 20px;
-    margin-top: 20px;
+    margin-top: 15px;
   }
   .head img{
     border-radius: 100px;

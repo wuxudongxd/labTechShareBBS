@@ -76,13 +76,11 @@
     
     height: 100%;
 }
-#right_bar{
-width: 270px;
-    float: right;
-    margin-right: 20px;
+.el-aside{
+   padding-right: 10px;
+   padding-left: 10px;
 }
-#Main{
-    margin: 0 310px 0 20px;
-    
+.el-main{
+  padding-right: 10px;
 }
 </style>

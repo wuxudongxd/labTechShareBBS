@@ -5,13 +5,19 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    token:localStorage.getItem('token') ? localStorage.getItem('token'):'',
+    userinfo:localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')):null,
+    back:false
   },
   mutations: {
-    setToken(state, value) { // 设置存储token
-      state.token = value;
-      localStorage.setItem('token', value);
+    setUserinfo(state, value) {
+      state.userinfo = value;
+      localStorage.setItem('userInfo', JSON.stringify(value));
+      console.log("setUserinfo");
+      console.log(state.userinfo);
     },
+    setNeedBack(state, value) {
+      state.back=value;
+    }
   },
   actions: {
   },

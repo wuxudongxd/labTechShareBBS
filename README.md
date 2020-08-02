@@ -1,6 +1,17 @@
 # echo_web
 
+
+
 ## Project setup
+
+问题描述：
+Unexpected end of JSON input while parsing near '…"
+
+解决办法：
+（1）npm install --registry=https://registry.npm.taobao.org --loglevel=silly
+（2） npm cache clean --force
+（3） npm install
+
 ```
 npm install
 ```

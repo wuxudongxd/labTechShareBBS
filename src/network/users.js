@@ -1,4 +1,4 @@
-import {request} from "@/network/request";
+import {request,request_auth_required} from "@/network/request";
 
 export function getUsersMultiData() {
   return request({
@@ -22,6 +22,14 @@ export function Register(data) {
   })
 }
 
+export function GetCode(data) {
+  return request({
+    method:'post',
+    url:'/api/emailcodes/',
+    data
+  },60000)
+}
+
 export function GetSms(data) {
   return request({
     method:'get',
@@ -30,3 +38,46 @@ export function GetSms(data) {
   })
 }
 
+export function LoadPersonInfo(id) {
+  return request({
+    method:'get',
+    url:'/api/users/simple/'+id+"/",
+  }).then(res => {
+    console.log("LoadPersonInfo");
+    console.log(res);
+    var result={};
+    switch(res.status){
+      case 200:
+        result.status=200;
+        result.data=res.data;
+        break;
+      case 404:
+        result.status=404;
+        result.data=res.data;
+        break;
+    }
+    return (result);
+  })
+}
+export function UpdatePersonInfo(id,data) {
+  return request_auth_required({
+    method:'put',
+    url:'/api/users/detail/'+id+"/",
+    data
+  }).then(res => {
+    console.log("UpdatePersonInfo");
+    console.log(res);
+    // var result={};
+    // switch(res.status){
+    //   case 200:
+    //     result.status=200;
+    //     result.data=res.data.results;
+    //     break;
+    //   case 404:
+    //     result.status=404;
+    //     result.data=res.data;
+    //     break;
+    // }
+    return (res);
+  })
+}

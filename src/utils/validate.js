@@ -21,9 +21,10 @@ export function checkUsername(rule, value, callback) {
     callback()
   }
 };
-
+var pw1=""
 // <!--验证密码-->
 export function checkPassword(rule, value, callback) {
+  pw1=value;
   let re = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,20}$/;
   if (value === "") {
     callback(new Error("请输入密码"))
@@ -33,7 +34,19 @@ export function checkPassword(rule, value, callback) {
     callback()
   }
 };
-
+// <!--验证二次密码-->
+export function checkPassword2(rule, value, callback) {
+  let re = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,20}$/;
+  if (value === "") {
+    callback(new Error("请输入密码"))
+  } else if (!re.test(value)) {
+    callback(new Error("密码为6至20位数字+字母"))
+  }else if(value!=pw1){
+    callback(new Error("两次密码输入不一致"))
+  } else {
+    callback()
+  }
+};
 
 // <!--验证校验码-->
 export function checkCode(rule, value, callback) {
