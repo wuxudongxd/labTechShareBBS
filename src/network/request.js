@@ -1,8 +1,8 @@
 import axios from 'axios'
 import context from "../main"
-var baseURL='http://116.63.172.108:8010'//'http://47.107.172.119/'
+var baseURL='http://api.littledongdong.top/'//'http://47.107.172.119/'
 export function request(config,timeout1=10000) {
-  
+
   const instance = axios.create({
     baseURL: baseURL,//'http://47.107.172.119:8000/',
     timeout: timeout1
@@ -36,7 +36,7 @@ export function request_auth_required(config,timeout1=10000) {
   }else{
     config.headers.Authorization="cuit ";
   }
-  
+
   const instance = axios.create({
     baseURL: baseURL,
     timeout: timeout1
