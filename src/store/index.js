@@ -9,24 +9,11 @@ export default new Vuex.Store({
     user
   },
   state: {
-    userinfo: localStorage.getItem("userInfo")
-      ? JSON.parse(localStorage.getItem("userInfo"))
-      : null,
     back: false
   },
   mutations: {
-    setUserinfo(state, value) {
-      state.userinfo = value;
-      localStorage.setItem("userInfo", JSON.stringify(value));
-      console.log("setUserinfo");
-      console.log(state.userinfo);
-    },
     setNeedBack(state, value) {
       state.back = value;
-    },
-    resetUserinfo(state) {
-      state.userinfo = null;
-      localStorage.removeItem("userInfo");
     }
   },
   actions: {},

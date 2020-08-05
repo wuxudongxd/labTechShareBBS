@@ -47,34 +47,6 @@ Vue.prototype.gotoUserPage = function(id) {
   router.push({ path: "/person/" + id });
 };
 
-// router.beforeEach((to, from, next) => {
-//   if (
-//     to.matched.some(record => record.meta.requireAuth) &&
-//     store.state.userinfo == null
-//   ) {
-//     // 判断该路由是否需要登录权限
-//     next({
-//       path: "/bbs"
-//     });
-//   } else {
-//     //     console.log("from");
-//     //     console.log(from);
-//     //     if(from.path=='/bbs/write'){
-//     //       if(!to.params.hasOwnProperty("id")){
-//     //         const answer = window.confirm('当前文章内容未上传，确定要离开？')
-//     //         if (answer) {
-//     //             next()
-//     //         }
-//     //       }else{
-//     //         next()
-//     //       }
-
-//     //     }else{
-//     next();
-//     // }
-//   }
-// });
-
 var context = new Vue({
   router,
   store,
