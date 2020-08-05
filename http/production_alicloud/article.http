@@ -1,0 +1,175 @@
+# baseurl
+@host = http://47.107.172.119:8010
+
+# 普通用户的token
+@token = cuit eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6InN1cGVydXNlciIsImV4cCI6MTU5NjEwOTYzNiwiZW1haWwiOiJzdXBlcnVzZXJAcXEuY29tIn0.oGlYI19tppvG2DFyxTH8qsh1jrmgr0TvZagU1TePqSo
+
+
+# 获取所有分类
+GET {{host}}/api/categorys/
+
+
+
+###
+# 根据用户类型返回分类
+GET {{host}}/api/usercategorys/
+Authorization: {{token}}
+
+
+
+###
+# 查看具体分类
+GET {{host}}/api/categorys/1/
+
+
+
+###
+# 获取所有标签
+GET {{host}}/api/tags/
+
+
+
+###
+# 查看某具体的标签内容
+GET {{host}}/api/tags/1/
+
+
+###
+# 查看某些tags下的文章
+POST  {{host}}/api/tags/articles/
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+    "tag":[]
+}
+
+
+
+###
+# 查看全部文章列表
+GET  {{host}}/api/articles/  
+
+
+
+###
+# 查看文章详情
+GET {{host}}/api/articles/1/
+
+
+
+###
+# 新增文章 
+POST {{host}}/api/articles/
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+    "title":"测试标题",
+    "body":"测试文章内容",
+    "tag":[]
+}
+
+
+
+###
+# 全局/局部更新文章
+PATCH {{host}}/api/articles/
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+    "title":"修改测试标题",
+    "body":"修改测试内容",
+    "tag":[]
+}
+
+
+###
+# 删除文章
+DELETE {{host}}/api/articles/21/
+Authorization: {{token}}
+
+
+###
+# 获取某个用户发布的所有文章
+GET {{host}}/api/user/1/articles/
+
+
+###
+# 查看某文章评论
+GET {{host}}/api/articles/1/comments/
+
+
+###
+# 新增评论
+POST {{host}}/api/comments/
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+    "article":1,
+    "text":"这是id为1的文章的评论一"
+}
+
+
+###
+# 获取用户的所有评论
+GET {{host}}/api/user/1/comments/
+Authorization: {{token}}
+
+
+
+###
+# 删除评论
+DELETE {{host}}/api/comments/5/
+Authorization: {{token}}
+
+
+###
+# 获取用户收藏的文章
+GET {{host}}/api/userfav/
+Authorization: {{token}}
+
+
+
+###
+# 新增用户收藏
+POST {{host}}/api/userfav/
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+    "article":3
+}
+
+
+
+###
+# 删除收藏
+DELETE {{host}}/api/userfav/1/
+Authorization: {{token}}
+
+
+###
+# 获取用户的浏览记录
+GET {{host}}/api/userhistory/
+Authorization: {{token}}
+
+
+
+###
+# 新增浏览记录
+POST {{host}}/api/userhistory/
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+    "article":2
+}
+
+
+###
+# 删除浏览记录
+DELETE {{host}}/api/userhistory/1/
+Authorization: {{token}}

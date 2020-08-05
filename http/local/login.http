@@ -1,0 +1,133 @@
+# bashurl
+@host = http://127.0.0.1:8000
+# 普通用户的token
+@token = cuit eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6InN1cGVydXNlciIsImV4cCI6MTU5NjEwOTYzNiwiZW1haWwiOiJzdXBlcnVzZXJAcXEuY29tIn0.oGlYI19tppvG2DFyxTH8qsh1jrmgr0TvZagU1TePqSo
+
+
+
+# 邮箱验证码
+POST {{host}}/api/emailcodes/
+Content-Type: application/json
+
+{
+    "email":"1993981461@qq.com"
+}
+
+
+
+###
+# 注册
+POST {{host}}/api/register/
+Content-Type: application/json
+
+{
+    "email":"3460457627@qq.com",
+    "password":"user",
+    "password2":"user",
+    "code":"722626"
+}
+
+
+
+###
+# 登录
+POST {{host}}/api/login/
+Content-Type: application/json
+
+{
+    "user":"superuser",
+    "password":"superuser"
+}
+
+
+
+###
+# 用户查看自己的信息
+GET {{host}}/api/users/detail/5/
+Authorization: {{token}}
+
+
+
+
+###
+# 用户更新自己的信息
+PATCH {{host}}/api/users/detail/5/
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+    "sign": "senior",
+    "gender": "no",
+    "age": 18,
+    "enrollment_time": 2018,
+    "major": "计科",
+    "student_id": 2018051171,
+    "introduction": "这里是简介/个性签名",
+    "website":"http://www.littledongdong.top"
+}
+
+
+
+###
+# 根据旧密码修改密码
+POST {{host}}/api/users/oldpassword/3/
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+    "old_password":"user",
+    "new_password":"user1",
+    "new_password2":"user1"
+}
+
+
+
+###
+# 根据邮箱修改密码/找回密码
+POST {{host}}/api/users/emailpassword/3/
+Content-Type: application/json
+
+{
+    "email":"3460457627@qq.com",
+    "code":"739039",
+    "password":"user2",
+    "password2":"user2"
+}
+
+
+
+###
+# 修改邮箱
+POST {{host}}/api/users/emailreset/3/
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+    "email":"1993981461@qq.com",
+    "code":"091962"
+}
+
+
+
+###
+# 更新头像
+POST {{host}}/api/users/avatar/3/
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+Authorization: {{token}}
+
+Content-Disposition: form-data; name="avatar"; filename="avatar.png"
+
+< ./avatar.png
+--WebAppBoundary--
+
+
+
+###
+# 用户简略信息列表
+GET {{host}}/api/users/simple/
+
+
+
+###
+# 展示单个用户的简略信息
+GET {{host}}/api/users/simple/13/
