@@ -74,14 +74,16 @@ export function ReadArticle(id) {
     method: "get",
     url: "/api/articles/" + id
   }).then(res => {
-    // console.log("res");
-    // console.log(res);
+    console.log("ReadArticle");
+    console.log(res);
     var result = {};
     switch (res.status) {
       case 200:
         result.status = 200;
         result.data = res.data;
         break;
+      case 404:
+        result.status=404;
     }
     return result;
   });
@@ -89,6 +91,8 @@ export function ReadArticle(id) {
 export function ReadEditArticle(id) {
   return ReadArticle(id).then(res => {
     var result = {};
+    console.log("ReadEditArticle:");
+    console.log(res);
     switch (res.status) {
       case 200:
         // console.log("author_id:"+res.data.author_info.id);
@@ -101,6 +105,26 @@ export function ReadEditArticle(id) {
         } else {
           result.status = 300;
         }
+        break;
+      case 404:
+        result.status = 404;
+        break;
+    }
+    return result;
+  });
+}
+export function DeletArticle(id) {
+  return request_auth_required({
+    method: "delete",
+    url: "/api/articles/" + id + "/"
+  }).then(res => {
+    console.log("DeletArticle");
+    console.log(res);
+    var result = {};
+    switch (res.status) {
+      case 200:
+        result.status = 200;
+        result.data = res.data;
         break;
     }
     return result;

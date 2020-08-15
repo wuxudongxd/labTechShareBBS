@@ -58,6 +58,16 @@
       />
     </el-card>
     <HorizonSpace />
+    <!-- <el-card shadow="hover" v-if="id">
+      删除文章
+    </el-card> -->
+    <CardButton
+      @click.native="deleteArticle()"
+      iconClass="el-icon-delete"
+      css="color:#F56C6C"
+      text="删除文章"
+      v-if="id"
+    />
     <SelectDialogue
       ref="SelectDialogue"
       :writing="true"
@@ -68,12 +78,14 @@
 
 <script>
 import HorizonSpace from "@/views/components/common/HorizonSpace";
+import CardButton from "@/views/components/common/CardButton";
 import SelectDialogue from "@/views/components/dialogues/WriteSelect";
 import {
   CreateArticle,
   UpdateArticle,
   ReadArticle,
-  ReadEditArticle
+  ReadEditArticle,
+  DeletArticle
 } from "@/network/articles";
 import { mavonEditor } from "mavon-editor";
 import "mavon-editor/dist/css/index.css";
@@ -82,7 +94,8 @@ export default {
   components: {
     mavonEditor,
     SelectDialogue,
-    HorizonSpace
+    HorizonSpace,
+    CardButton
   },
   data() {
     return {
@@ -99,7 +112,8 @@ export default {
       value: "",
       title: "", //文章标题
       id: null,
-      uploading: false
+      uploading: false,
+      deletingArticle:false,
     };
   },
   mounted: function() {
@@ -114,6 +128,39 @@ export default {
     }
   },
   methods: {
+    deleteArticle(){
+      this.$confirm('此操作将永久删除该文章, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'error'
+      }).then(() => {
+        if(!this.deletingArticle){
+          this.deletingArticle=true;
+          this.$message('正在删除');
+          DeletArticle(this.id).then(
+            res=>{
+              switch(res.status){
+                case 200:
+                  this.$router.push({ path: "/bbs"});
+                  this.$message({
+                    message: '删除成功',
+                    type: 'success'
+                  });
+                  break;
+              }
+              this.deletingArticle=false;
+            }
+          )
+        }
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '已取消删除'
+        });          
+      });
+      
+      
+    },
     toRead() {
       if (this.$route.params.back) {
         this.$store.commit("setNeedBack", true);
@@ -148,6 +195,9 @@ export default {
             });
             break;
           case 300: //无编辑权限，跳转到文章预览页
+            break;
+          case 404:
+            this.$router.push({ path: "/bbs"});
             break;
         }
       });

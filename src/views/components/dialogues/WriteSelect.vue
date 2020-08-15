@@ -8,7 +8,7 @@
       @close="onClose()"
       id="logindialog"
     >
-      <el-tabs tab-position="left" style="height: 200px;">
+      <el-tabs tab-position="left" style="height: 400px;">
         <el-tab-pane :key="cat.id" v-for="cat in categories" :label="cat.name">
           <el-tag
             :key="tag.id"
