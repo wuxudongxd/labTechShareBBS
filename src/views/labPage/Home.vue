@@ -123,8 +123,8 @@
 </template>
 
 <script>
-import userBar from "@/components/bars/UserBar";
-import HorizonSpace from "@/components/common/HorizonSpace";
+import userBar from "@/views/components/bars/UserBar";
+import HorizonSpace from "@/views/components/common/HorizonSpace";
 import Util from "@/assets/js/util.js";
 export default {
   name: "Home",

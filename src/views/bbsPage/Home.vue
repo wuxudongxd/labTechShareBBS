@@ -33,9 +33,9 @@
 </template>
 
 <script>
-  import userBar from '@/components/bars/UserBar'
-  import rankBar from '@/components/bars/RankBar'
-  import HorizonSpace from '@/components/common/HorizonSpace'
+  import userBar from '@/views/components/bars/UserBar'
+  import rankBar from '@/views/components/bars/RankBar'
+  import HorizonSpace from '@/views/components/common/HorizonSpace'
   
   export default {
     name: "Home",
@@ -76,13 +76,11 @@
     
     height: 100%;
 }
-#right_bar{
-width: 270px;
-    float: right;
-    margin-right: 20px;
+.el-aside{
+   padding-right: 10px;
+   padding-left: 10px;
 }
-#Main{
-    margin: 0 310px 0 20px;
-    
+.el-main{
+  padding-right: 10px;
 }
 </style>

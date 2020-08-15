@@ -1,18 +1,18 @@
 <template>
-  <div>
+  <div id="all">
     <NavMenu/>
     <div id="app">
     
-    <el-collapse-transition>
-      <router-view></router-view>
-    </el-collapse-transition>
-  </div>
+      <el-collapse-transition>
+        <router-view></router-view>
+      </el-collapse-transition>
+    </div>
   </div>
   
 </template>
 
 <script>
-  import NavMenu from '@/components/content/navmenu/NavMenu'
+  import NavMenu from '@/views/components/content/navmenu/NavMenu'
   export default {
     name: "App",
     components:{
@@ -26,7 +26,6 @@
   #app{
     margin-top: 60px;
     width: 100%;
-    height: calc(100vh - 60px);
-    overflow-y:scroll;
+    height: 100%;
   }
 </style>

@@ -13,8 +13,8 @@
 
 <script>
   import Carousel from './childHome/Carousel'
-  import userBar from '@/components/bars/UserBar'
-  import HorizonSpace from '@/components/common/HorizonSpace'
+  import userBar from '@/views/components/bars/UserBar'
+  import HorizonSpace from '@/views/components/common/HorizonSpace'
   export default {
     name: "Home",
     components: {

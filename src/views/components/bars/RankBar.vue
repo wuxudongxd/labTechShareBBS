@@ -11,7 +11,7 @@
 </template>
 
 <script>
-  import HorizonSpace from '@/components/common/HorizonSpace'
+  import HorizonSpace from '@/views/components/common/HorizonSpace'
   export default {
     name: "UserBar",
     components: {

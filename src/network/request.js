@@ -1,24 +1,72 @@
-import axios from 'axios'
+import axios from "axios";
+import context from "../main";
+var baseURL = "http://116.63.172.108/";
+// var baseURL = "http://127.0.0.1:8000/";
 
-export function request(config) {
+export function request(config, timeout1 = 10000) {
   const instance = axios.create({
-    baseURL: 'http://bj1-ali.ruixuncloud.com:57845',
-    timeout: 5000
-  })
+    baseURL: baseURL,
+    timeout: timeout1
+  });
 
-  instance.interceptors.request.use(config => {
-      return config
-    }, err => {
-      return err
+  instance.interceptors.request.use(
+    config => {
+      return config;
+    },
+    err => {
+      console.log("REQUEST_ERR");
+      console.log(err);
+      return err;
     }
   ),
+    instance.interceptors.response.use(
+      config => {
+        return config;
+      },
+      err => {
+        console.log("RESPONSE_ERR");
+        console.log(err.response);
+        return err.response;
+      }
+    );
 
-  instance.interceptors.response.use(config => {
-      return config
-    }, err => {
-      return err
+  return instance(config);
+}
+
+//带有token验证的request
+export function request_auth_required(config, timeout1 = 10000) {
+  config.headers = {};
+  if (context.hasLoginData()) {
+    config.headers.Authorization = "cuit " + context.$store.getters.token;
+  } else {
+    config.headers.Authorization = "cuit ";
+  }
+
+  const instance = axios.create({
+    baseURL: baseURL,
+    timeout: timeout1
+  });
+
+  instance.interceptors.request.use(
+    config => {
+      return config;
+    },
+    err => {
+      console.log("REQUEST_ERR");
+      console.log(err);
+      return err;
     }
-  )
+  ),
+    instance.interceptors.response.use(
+      config => {
+        return config;
+      },
+      err => {
+        console.log("RESPONSE_ERR");
+        console.log(err.response);
+        return err.response;
+      }
+    );
 
-  return instance(config)
+  return instance(config);
 }

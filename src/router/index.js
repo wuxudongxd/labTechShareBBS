@@ -1,24 +1,27 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import context from "../main"
 
 Vue.use(VueRouter);
 
 const Home = () => import('@/views/home/Home');
 const Profile = () => import('@/views/profile/Profile');
-const Users = () => import('@/views/users/Users');
-const Login = () => import('@/components/content/login/Login')
-const Register = () => import('@/components/content/login/Register')
-const Lab= () => import('@/views/labPage/Home');
-const BBS=() => import('@/views/bbsPage/Home');
-const BBS_Personal=() => import('@/views/bbsPage/Personal');
-const BBS_Overview=() => import('@/views/bbsPage/mainParts/Overview');
-const BBS_Select=() => import('@/views/bbsPage/mainParts/Select');
-const BBS_About=() => import('@/views/bbsPage/mainParts/About');
-const BBS_Write=() => import('@/views/bbsPage/mainParts/Write');
+const Lab = () => import('@/views/labPage/Home');
+const BBS = () => import('@/views/bbsPage/Home');
+const BBS_Personal = () => import('@/views/bbsPage/mainParts/Personal');
+const BBS_Overview = () => import('@/views/bbsPage/mainParts/Overview');
+const BBS_Select = () => import('@/views/bbsPage/mainParts/Select');
+const BBS_About = () => import('@/views/bbsPage/mainParts/About');
+const BBS_Write = () => import('@/views/bbsPage/mainParts/Write');
+const BBS_Read = () => import('@/views/bbsPage/mainParts/Read');
+const Tools = () => import('@/views/tools/tools');
+const Health = () => import('@/views/tools/health/health');
+
+
 const routes = [
   {
     path: '/',
-    redirect: '/lab'
+    redirect: '/bbs'
   },
   {
     path: '/lab',
@@ -50,15 +53,27 @@ const routes = [
       {
         // 当 /user/:id/posts 匹配成功
         // UserPosts 会被渲染在 User 的 <router-view> 中
-        path: 'write',
+        path: 'write/:id?',
+        name: 'write',
         component: BBS_Write,
         meta: {
           requireAuth: true // 添加该字段，表示进入这个路由是需要登录的
         }
       },
+      {
+        // 当 /user/:id/posts 匹配成功
+        // UserPosts 会被渲染在 User 的 <router-view> 中
+        path: 'read/:id',
+        name: 'read',
+        component: BBS_Read
+      },
+      {
+        path: "*", // 此处需特别注意置于最底部
+        component: BBS
+      }
       // 当 /user/:id 匹配成功，
       // UserHome 会被渲染在 User 的 <router-view> 中
-       // ...其他子路由     
+      // ...其他子路由
     ]
   },
   {
@@ -66,35 +81,38 @@ const routes = [
     component: Home
   },
   {
-    path: '/users',
-    component: Users
-  },
-  {
-    path: '/person',
+    path: '/person/:id',
     component: BBS_Personal,
     meta: {
       requireAuth: true // 添加该字段，表示进入这个路由是需要登录的
     }
-    
   },
   {
     path: '/profile',
     component: Profile
   },
   {
-    path: '/login',
-    component: Login
+    path: '/tools',
+    component: Tools,
+    // children: [
+    //   {
+    //     path: '/health',
+    //     component: Health
+    //   },
+    // ]
   },
   {
-    path: '/register',
-    component: Register
+    path: '/tools/health',
+    component: Health,
   },
-
+  {
+    path: "*", // 此处需特别注意置于最底部
+    component: BBS
+  }
 ];
 
 const router = new VueRouter({
   linkActiveClass: 'is-active',
-  mode: 'history',
   base: process.env.BASE_URL,
   routes
 });

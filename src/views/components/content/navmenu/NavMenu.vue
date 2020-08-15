@@ -1,18 +1,27 @@
 <template>
-  <div class="header">
+  <div class="header bottomShadowBox">
     <div class="content father">
       <div class="content">
         <div class="logo">
           <router-link to="/">
-            <img style="width:60px;" src="~assets/img/易控logo.png" alt="易控logo" v-if="this.islab()" />
+            <img
+              style="width:60px;"
+              src="~assets/img/echologo.png"
+              alt="易控logo"
+              v-if="this.islab()"
+            />
           </router-link>
-          <img style="width:200px; margin-left:20px; margin-top:10px;" src="~assets/img/CUITechs.png" alt="易控logo" v-if="!this.islab()" />
-          
+          <img
+            style="width:200px; margin-left:20px; margin-top:10px;"
+            src="~assets/img/CUITechs.png"
+            alt="易控logo"
+            v-if="!this.islab()"
+          />
         </div>
-        
+
         <ul class="nav left" v-if="islab()">
-          <li >
-            <router-link to="/lab" >首页</router-link>
+          <li>
+            <router-link to="/lab">首页</router-link>
           </li>
           <li>
             <a @click="movepage(1)">易控简介</a>
@@ -33,6 +42,9 @@
           </li>
           <li>
             <router-link to="/bbs/select">检索</router-link>
+          </li>
+          <li>
+            <router-link to="/tools">工具</router-link>
           </li>
           <li>
             <router-link to="/bbs/about">关于</router-link>
@@ -65,16 +77,15 @@
 
         <div v-if="!token" class="login-bar right">
           <el-button round @click="toBBS()" v-if="islab()">前往社区</el-button>
-          <el-button round @click="exit()" v-if="!islab()&&this.$store.state.token!=''" style="margin-right:10px;">退出</el-button>
-          
-          <div class="login-box login-box2">
-            <router-link to="/lab">lab</router-link>&nbsp;|&nbsp;
-            <router-link to="/register">注册</router-link>
-          </div>
+          <el-button
+            round
+            @click="exit()"
+            v-if="!islab() && $store.getters.isLogin"
+            style="margin-right:10px;"
+            >退出</el-button
+          >
         </div>
       </div>
-
-      
     </div>
   </div>
 </template>
@@ -95,21 +106,21 @@ export default {
     };
   },
   methods: {
-    exit(){
-      this.$confirm('确认要退出账号吗？')
-          .then(_ => {
-            this.$store.commit('setToken', '');
-            this.$notify.info({
-              title: '消息',
-              message: '您已经退出账号',
-              duration: 2000
-            });
-            if (this.$route.matched.some(record => record.meta.requireAuth)){
-              this.$router.push({ path: "/bbs/overview" });
-            }
-          })
-          .catch(_ => {});
-      
+    exit() {
+      this.$confirm("确认要退出账号吗？")
+        .then(_ => {
+          this.$store.dispatch("user/resetStatus");
+          this.$notify.info({
+            title: "消息",
+            message: "您已经退出账号",
+            duration: 2000
+          });
+          //这边做一个跳转
+          if (this.$route.matched.some(record => record.meta.requireAuth)) {
+            this.$router.push({ path: "/bbs/overview" });
+          }
+        })
+        .catch(_ => {});
     },
     toBBS() {
       this.$router.push({ path: "/bbs/overview" });
@@ -131,21 +142,20 @@ export default {
 </script>
 
 <style scoped>
-
 .header {
   width: 100%;
   height: 60px;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.04);
   position: fixed;
   top: 0;
   margin: auto;
-  z-index: 99;
+  z-index: 2000;
+
   background: #fff;
+  border-bottom: 1px solid #ebeef5;
 }
-.father{
+.father {
   display: flex;
-  
+
   min-width: 600px;
   max-width: 1100px;
   margin: 0 auto;
@@ -153,7 +163,8 @@ export default {
   height: 60px;
 }
 .content {
-  display:flex;justify-content:space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .nav li {
