@@ -4,8 +4,6 @@ import context from "../main"
 
 Vue.use(VueRouter);
 
-const Home = () => import('@/views/home/Home');
-const Profile = () => import('@/views/profile/Profile');
 const Lab = () => import('@/views/labPage/Home');
 const BBS = () => import('@/views/bbsPage/Home');
 const BBS_Personal = () => import('@/views/bbsPage/mainParts/Personal');
@@ -25,7 +23,11 @@ const routes = [
   },
   {
     path: '/lab',
-    component: Lab
+    component: Lab,
+    meta:{
+      // 页面标题title
+      title: '易控实验室'
+    }
   },
   {
     path: '/bbs',
@@ -36,19 +38,31 @@ const routes = [
         // 当 /user/:id/profile 匹配成功，
         // UserProfile 会被渲染在 User 的 <router-view> 中
         path: 'overview',
-        component: BBS_Overview
+        component: BBS_Overview,
+        meta:{
+          // 页面标题title
+          title: '首页'
+        }
       },
       {
         // 当 /user/:id/posts 匹配成功
         // UserPosts 会被渲染在 User 的 <router-view> 中
         path: 'select',
-        component: BBS_Select
+        component: BBS_Select,
+        meta:{
+          // 页面标题title
+          title: '检索'
+        }
       },
       {
         // 当 /user/:id/posts 匹配成功
         // UserPosts 会被渲染在 User 的 <router-view> 中
         path: 'about',
         component: BBS_About,
+        meta:{
+          // 页面标题title
+          title: '关于'
+        }
       },
       {
         // 当 /user/:id/posts 匹配成功
@@ -57,6 +71,7 @@ const routes = [
         name: 'write',
         component: BBS_Write,
         meta: {
+          title: '编写',
           requireAuth: true // 添加该字段，表示进入这个路由是需要登录的
         }
       },
@@ -65,11 +80,15 @@ const routes = [
         // UserPosts 会被渲染在 User 的 <router-view> 中
         path: 'read/:id',
         name: 'read',
-        component: BBS_Read
+        component: BBS_Read,
+        meta:{
+          // 页面标题title
+          title: '阅读'
+        }
       },
       {
         path: "*", // 此处需特别注意置于最底部
-        component: BBS
+        redirect: '/bbs'
       }
       // 当 /user/:id 匹配成功，
       // UserHome 会被渲染在 User 的 <router-view> 中
@@ -77,23 +96,20 @@ const routes = [
     ]
   },
   {
-    path: '/home',
-    component: Home
-  },
-  {
     path: '/person/:id',
     component: BBS_Personal,
     meta: {
+      title: '个人',
       requireAuth: true // 添加该字段，表示进入这个路由是需要登录的
     }
   },
   {
-    path: '/profile',
-    component: Profile
-  },
-  {
     path: '/tools',
     component: Tools,
+    meta:{
+      // 页面标题title
+      title: '工具'
+    }
     // children: [
     //   {
     //     path: '/health',
@@ -104,10 +120,14 @@ const routes = [
   {
     path: '/tools/health',
     component: Health,
+    meta:{
+      // 页面标题title
+      title: '健康打卡'
+    }
   },
   {
     path: "*", // 此处需特别注意置于最底部
-    component: BBS
+    redirect: '/bbs'
   }
 ];
 

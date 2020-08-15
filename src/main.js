@@ -46,7 +46,13 @@ Vue.prototype.gotoUserPage = function(id) {
   if (id < 0) return;
   router.push({ path: "/person/" + id });
 };
-
+router.beforeEach((to, from, next) => {
+  /* 路由发生变化修改页面title */
+  if (to.meta.title) {
+    document.title = 'cuitech-'+to.meta.title;
+  }
+  next();
+})
 var context = new Vue({
   router,
   store,
