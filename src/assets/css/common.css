@@ -49,3 +49,6 @@ p{
   .secondInfoColor{
     color: #909399;
   }
+  .markdown-body img{
+    width: auto !important;
+  }

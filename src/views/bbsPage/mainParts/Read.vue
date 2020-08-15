@@ -305,11 +305,26 @@ export default {
             break;
         }
       });
+    },
+    resetData(){
+      this.title="",
+      this.id=null,
+      this.title="",
+      this.body="",
+      this.html="",
+      this.edit_time="",
+      this.catToTags={},
+      this.commentPageCount=0,
+      this.commentCurrentPage=1,
+      this.commentCurrentPageData=[],
+      this.commentCurrentreply1=null,
+      this.commentCurrentreply2=null,
+      this.showBack=null
     }
   },
   data() {
     return {
-      title: "vue开发记录",
+      title: "",
       id: null,
       author: {
         name: "",
@@ -327,6 +342,21 @@ export default {
       commentCurrentreply2: null,
       showBack: null
     };
+  },
+  beforeRouteUpdate(to, from, next) {
+    console.log("beforeRouteUpdate");
+    // console.log(from);
+
+    if (to.params.id == this.id) {
+      next();
+      return;
+    }
+    if (to.params.id) {
+      //新建文章
+      next();
+      this.resetData();
+      this.loadArticle();
+    }
   }
 };
 </script>

@@ -30,6 +30,7 @@
         <p><s>解决普通用户查看他人用户信息</s> </p>
         <p><s>解决点击作者名称跳转到用户信息界面</s> </p>
         <p>个人页加入文章管理</p>
+        <p>重构标签选择界面</p>
         <p>编写文章页加入已选标签的显示</p>
       </div>
     </el-card>
@@ -37,6 +38,30 @@
     <el-card :body-style="{ padding: '0px' }"  shadow="hover">
       <div  class="header bottomShadowBox">
         <i class="el-icon-time"></i> 历程
+      </div>
+      <div style="padding: 14px;">
+        <el-timeline>
+          <el-timeline-item timestamp="2020/8/15" placement="top">
+            <div style="display:inline-block;">
+              <el-card>
+                <h4>修复了图片尺寸与实际不符合的bug，</h4>
+              </el-card>
+            </div>
+            
+          </el-timeline-item>
+        </el-timeline>
+      </div>
+      <div style="padding: 14px;">
+        <el-timeline>
+          <el-timeline-item timestamp="2020/8/15" placement="top">
+            <div style="display:inline-block;">
+              <el-card>
+                <h4>修复read页面切换不更新的bug</h4>
+              </el-card>
+            </div>
+            
+          </el-timeline-item>
+        </el-timeline>
       </div>
       <div style="padding: 14px;">
         <el-timeline>
