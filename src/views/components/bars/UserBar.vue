@@ -15,14 +15,14 @@
         </div>
       </div>
       <div v-else>
-        <div class="head">
-          <img
-            src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
-            class="image"
-          />
-          <p class="username">{{ $store.getters.userinfo.username }}</p>
-        </div>
-        <HorizonSpace />
+          <div class="head bottomShadowBox">
+            <img
+              src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
+              class="image"
+            />
+            <p class="username">{{ $store.getters.userinfo.username }}</p>
+          </div>
+        
         <hr color="#EBEEF5" SIZE="1" style="margin: 0 -20px" />
         <HorizonSpace />
         <div class="btns">
@@ -90,6 +90,8 @@ export default {
   display: flex;
 }
 .head {
+  margin: -20px -20px 0 -20px;
+  padding: 20px;
   text-align: center;
   display: flex;
 }
