@@ -99,8 +99,8 @@ const routes = [
     path: '/person/:id',
     component: BBS_Personal,
     meta: {
-      title: '个人',
-      requireAuth: true // 添加该字段，表示进入这个路由是需要登录的
+      title: '个人页',
+      //requireAuth: true // 添加该字段，表示进入这个路由是需要登录的
     }
   },
   {

@@ -30,14 +30,14 @@
                     <el-submenu index="1">
                       <template slot="title">
                         <i class="el-icon-location"></i>
-                        <span>我的文章</span>
+                        <span>文章</span>
                       </template>
                       <el-menu-item index="1-1">提问</el-menu-item>
                       <el-menu-item index="1-2">学习分享</el-menu-item>
                       <el-menu-item index="1-3">项目记录</el-menu-item>
                       <el-menu-item index="1-4">资源分享</el-menu-item>
                     </el-submenu>
-                    <el-submenu index="2">
+                    <el-submenu v-if="this.$store.getters.userinfo" index="2">
                       <template slot="title">
                         <i class="el-icon-location"></i>
                         <span>消息</span>
@@ -173,20 +173,7 @@
                             : "未知"
                         }}
                       </el-form-item>
-                      <el-form-item label="教务处密码">
-                        {{
-                          personalData.student_pwd
-                            ? personalData.student_pwd
-                            : "默认隐藏"
-                        }}
-                      </el-form-item>
-                      <el-form-item label="同意打卡">
-                        {{
-                          personalData.sure_to_clock
-                            ? personalData.sure_to_clock
-                            : "未知"
-                        }}
-                      </el-form-item>
+                      
 
                       <el-form-item label="联系方式">
                         <EditableInfoTable
