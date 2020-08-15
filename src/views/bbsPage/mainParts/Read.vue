@@ -28,6 +28,7 @@
           <el-tag
             size="mini"
             class="info_tags hoverShadow"
+            style="cursor:pointer"
             v-if="
               $store.getters.userinfo && $store.getters.userinfo.id == author.id
             "
@@ -258,6 +259,7 @@ export default {
             this.edit_time = res.data.results.modified_time.split("T")[0];
             var tag_info = res.data.results.tag_info;
             this.title = res.data.results.title;
+            document.title = 'cuitech-'+this.title;
             this.body = res.data.results.body;
             this.loadComments(1);
             getCategories().then(res2 => {
