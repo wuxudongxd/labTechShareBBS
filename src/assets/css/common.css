@@ -52,3 +52,9 @@ p{
   .markdown-body img{
     width: auto !important;
   }
+
+  body.dialog-open {
+    position: fixed;
+    width: 100%;
+    overflow-y: hidden;
+  }

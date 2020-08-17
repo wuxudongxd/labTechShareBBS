@@ -46,8 +46,8 @@ export function LoadPersonInfo(id) {
     method: "get",
     url: "/api/users/simple/" + id + "/"
   }).then(res => {
-    console.log("LoadPersonInfo");
-    console.log(res);
+    // console.log("LoadPersonInfo");
+    // console.log(res);
     var result = {};
     switch (res.status) {
       case 200:
@@ -63,6 +63,27 @@ export function LoadPersonInfo(id) {
   });
 }
 
+export function LoadPersonDetail(id) {
+  return request_auth_required({
+    method: "get",
+    url: "/api/users/detail/",
+  }).then(res => {
+    // console.log("LoadPersonDetail");
+    // console.log(res);
+    // var result={};
+    // switch(res.status){
+    //   case 200:
+    //     result.status=200;
+    //     result.data=res.data.results;
+    //     break;
+    //   case 404:
+    //     result.status=404;
+    //     result.data=res.data;
+    //     break;
+    // }
+    return res;
+  });
+}
 // export function UpdatePersonInfo(data) {
 //   return request_auth_required({
 //     method: "put",

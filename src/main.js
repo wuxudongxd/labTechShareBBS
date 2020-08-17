@@ -25,6 +25,10 @@ Vue.prototype.hasLoginData = function() {
   return store.getters.userinfo;
 };
 
+Vue.prototype.log = function(val) {
+  console.log(val);
+};
+
 Vue.prototype.sortArr = function(arr) {
   //创建每次循环存储最大值得变量
   var max; //遍历数组，默认arr中的某一个元素为最大值，进行逐一比较
@@ -41,6 +45,23 @@ Vue.prototype.sortArr = function(arr) {
   }
   return arr;
 };
+
+const ModalHelper1 = ( (bodyCls) =>{
+  let scrollTop;
+  return {
+    afterOpen: function () {
+        scrollTop = document.scrollingElement.scrollTop;
+        document.body.classList.add(bodyCls);
+        document.body.style.top = -scrollTop + 'px';
+    },
+    beforeClose: function () {
+        document.body.classList.remove(bodyCls);
+        // scrollTop lost after set position:fixed, restore it back.
+        document.scrollingElement.scrollTop = scrollTop;
+    }
+  };
+})('dialog-open');
+Vue.prototype.ModalHelper=ModalHelper1;
 
 Vue.prototype.gotoUserPage = function(id) {
   if (id < 0) return;

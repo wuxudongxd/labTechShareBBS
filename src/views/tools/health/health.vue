@@ -23,8 +23,8 @@
 </template>
 
 <script>
-import {reqGetHealthClock} from '@/api/user'
-import {setToken} from "@/utils/auth";
+// import {reqGetHealthClock} from '@/api/user'
+// import {setToken} from "@/utils/auth";
 
 export default {
   name: "health",
@@ -37,17 +37,17 @@ export default {
   },
   methods: {
     HealthClock() {
-      setToken(this.$route.query.token)
-      reqGetHealthClock().then(res => {
-        if (res) {
-          console.log(res)
-          this.clock_res = res.msg
-          this.clocked = res.results
-          if (true===this.clocked) {
-            this.percentage = 100
-          }
-        }
-      })
+      // setToken(this.$route.query.token)
+      // reqGetHealthClock().then(res => {
+      //   if (res) {
+      //     console.log(res)
+      //     this.clock_res = res.msg
+      //     this.clocked = res.results
+      //     if (true===this.clocked) {
+      //       this.percentage = 100
+      //     }
+      //   }
+      // })
     }
   }
 }

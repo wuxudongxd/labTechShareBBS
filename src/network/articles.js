@@ -29,8 +29,8 @@ export function CreateArticle(title, body, tag) {
     url: "/api/articles/",
     data
   }).then(res => {
-    console.log("CreateArticle");
-    console.log(res);
+    // console.log("CreateArticle");
+    // console.log(res);
     var result = {};
     switch (res.status) {
       case 200:
@@ -74,8 +74,8 @@ export function ReadArticle(id) {
     method: "get",
     url: "/api/articles/" + id
   }).then(res => {
-    console.log("ReadArticle");
-    console.log(res);
+    // console.log("ReadArticle");
+    // console.log(res);
     var result = {};
     switch (res.status) {
       case 200:
@@ -91,8 +91,8 @@ export function ReadArticle(id) {
 export function ReadEditArticle(id) {
   return ReadArticle(id).then(res => {
     var result = {};
-    console.log("ReadEditArticle:");
-    console.log(res);
+    // console.log("ReadEditArticle:");
+    // console.log(res);
     switch (res.status) {
       case 200:
         // console.log("author_id:"+res.data.author_info.id);
@@ -118,8 +118,8 @@ export function DeletArticle(id) {
     method: "delete",
     url: "/api/articles/" + id + "/"
   }).then(res => {
-    console.log("DeletArticle");
-    console.log(res);
+    // console.log("DeletArticle");
+    // console.log(res);
     var result = {};
     switch (res.status) {
       case 200:
@@ -135,8 +135,8 @@ export function ReadComments(id, page) {
     method: "get",
     url: "/api/articles/" + id + "/comments/" + "?page=" + page
   }).then(res => {
-    console.log("ReadComments");
-    console.log(res);
+    // console.log("ReadComments");
+    // console.log(res);
     var result = {};
     switch (res.status) {
       case 200:
@@ -182,8 +182,8 @@ export function DeletComment(id) {
     method: "delete",
     url: "/api/comments/" + id + "/"
   }).then(res => {
-    console.log("DeletComment");
-    console.log(res);
+    // console.log("DeletComment");
+    // console.log(res);
     var result = {};
     switch (res.status) {
       case 200:
@@ -205,14 +205,14 @@ export function GetArticlesByTags(tags, page) {
   }
   var data = {};
   data.tag = tags;
-  console.log("obj:", data);
+  // console.log("obj:", data);
   return request({
     method: "post",
     url: "/api/tags/articles/" + suffix,
     data
   }).then(res => {
-    console.log("getArticlesByTags");
-    console.log(res);
+    // console.log("getArticlesByTags");
+    // console.log(res);
     var result = {};
     switch (res.status) {
       case 200:

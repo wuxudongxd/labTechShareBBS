@@ -160,62 +160,66 @@ export default {
         if (valid) {
           this.loading = true;
           if (this.loginState) {
-            this.$store
-              .dispatch("user/login", {
-                user: this.form.name,
-                password: this.form.pw0
-              })
-              .then(async res => {
-                if (res) {
-                  const res = await this.$store.dispatch("user/getUserinfo");
-                  if (res) {
-                    this.dialogVisible = false;
-                    this.$notify.success({
-                      title: "消息",
-                      message: "登陆成功",
-                      duration: 2000
-                    });
-                  }
-                }
-                this.loading = false;
-              });
-            // Login({
-            //   user: this.form.name,
-            //   password: this.form.pw0
-            // })
-            //   .then(res => {
+            // this.$store
+            //   .dispatch("user/login", {
+            //     user: this.form.name,
+            //     password: this.form.pw0
+            //   })
+            //   .then(async res => {
             //     console.log(res);
-            //     switch (res.status) {
-            //       case 400:
-            //         this.$alert("用户名或密码错误", "警告", {
-            //           confirmButtonText: "确定"
-            //         });
-            //         this.loading = false;
-            //         break;
-            //       case 200:
-            //         this.$store.commit("setUserinfo", {
-            //           token: res.data.token,
-            //           id: res.data.results.id,
-            //           name: res.data.results.username,
-            //           email: res.data.results.email
-            //         });
+            //     if (res) {
+            //       const res2 = await this.$store.dispatch("user/getUserinfo");
+            //       console.log(res2);
+            //       if (res2) {
             //         this.dialogVisible = false;
-            //         this.$notify.info({
+            //         this.$notify.success({
             //           title: "消息",
-            //           message: "您已经成功登录",
+            //           message: "登陆成功",
             //           duration: 2000
             //         });
-            //         break;
-            //       default:
-            //         this.loading = false;
-            //         break;
+            //       }
             //     }
-            //   })
-            //   .catch(err => {
             //     this.loading = false;
-            //     console.log("ERROR");
-            //     console.log(err);
             //   });
+            Login({
+              user: this.form.name,
+              password: this.form.pw0
+            })
+            .then(res => {
+              console.log(res);
+              switch (res.status) {
+                case 400:
+                  this.$alert("用户名或密码错误", "警告", {
+                    confirmButtonText: "确定"
+                  });
+                  this.loading = false;
+                  break;
+                case 200:
+                  console.log('this.$store');
+                  console.log(this.$store);
+                  this.$store.commit("user/SET_TOKEN", res.data.token);
+                  this.$store.commit("user/SET_USERINFO", {
+                    id: res.data.results.id,
+                    username: res.data.results.username,
+                    email: res.data.results.email
+                  });
+                  this.dialogVisible = false;
+                  this.$notify.info({
+                    title: "消息",
+                    message: "您已经成功登录",
+                    duration: 2000
+                  });
+                  break;
+                default:
+                  this.loading = false;
+                  break;
+              }
+            })
+            .catch(err => {
+              this.loading = false;
+              console.log("ERROR");
+              console.log(err);
+            });
           } else {
             Register({
               email: this.form.name,

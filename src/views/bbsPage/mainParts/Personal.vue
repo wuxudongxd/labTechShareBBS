@@ -482,5 +482,7 @@ export default {
 }
 .info_body {
   display: flex;
+  display: -webkit-flex;
+  align-items: flex-start;
 }
 </style>

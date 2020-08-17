@@ -7,7 +7,7 @@
           type="text"
           placeholder="请输入标题"
           v-model="title"
-          maxlength="80"
+          maxlength="70"
           show-word-limit
         >
         </el-input>
@@ -47,6 +47,11 @@
           </el-tooltip>
         </div>
       </div>
+      <SelectedTagsBar class="SelectedTagsBar"
+        :detailCatData="$refs.SelectDialogue?$refs.SelectDialogue.realTagChosen:{}"
+        :closeable="false"
+        ref="SelectedTagsBar"
+      />
     </el-card>
     <HorizonSpace />
     <el-card :body-style="{ padding: '0px' }" shadow="hover">
@@ -68,10 +73,16 @@
       text="删除文章"
       v-if="id"
     />
-    <SelectDialogue
+    <!-- <SelectDialogue
       ref="SelectDialogue"
       :writing="true"
       @updateChosenTags="onUpdateChosenTags"
+    /> -->
+    <SelectDialogue2
+    v-show="selectVisible"
+    ref="SelectDialogue"
+    @cancel="cancelSelect"
+    @updateChosenTags="onUpdateChosenTags"
     />
   </div>
 </template>
@@ -80,6 +91,8 @@
 import HorizonSpace from "@/views/components/common/HorizonSpace";
 import CardButton from "@/views/components/common/CardButton";
 import SelectDialogue from "@/views/components/dialogues/WriteSelect";
+import SelectDialogue2 from '@/views/components/dialogues/SelectDialogue'
+import SelectedTagsBar from '@/views/components/bars/SelectedTagsBar'
 import {
   CreateArticle,
   UpdateArticle,
@@ -95,7 +108,9 @@ export default {
     mavonEditor,
     SelectDialogue,
     HorizonSpace,
-    CardButton
+    CardButton,
+    SelectDialogue2,
+    SelectedTagsBar
   },
   data() {
     return {
@@ -114,6 +129,7 @@ export default {
       id: null,
       uploading: false,
       deletingArticle:false,
+      selectVisible:false
     };
   },
   mounted: function() {
@@ -124,10 +140,13 @@ export default {
       //当前页有文章标号
       this.loadArticle();
     } else {
-      this.$refs.SelectDialogue.initCategories();
+      this.$refs.SelectDialogue.loadCats();
     }
   },
   methods: {
+    cancelSelect(){
+      this.selectVisible=false
+    },
     deleteArticle(){
       this.$confirm('此操作将永久删除该文章, 是否继续?', '提示', {
         confirmButtonText: '确定',
@@ -177,11 +196,12 @@ export default {
         switch (res.status) {
           case 200: //有编辑权限，加载文章内容
             this.id = this.$route.params.id;
-            console.log(this);
+            
             this.lastUpdateBody = this.markdown = res.data.body;
             this.lastUpdateTitle = this.title = res.data.title;
-            //content=res.data.body;
-            this.$refs.SelectDialogue.initCategories().then(res2 => {
+            console.log('ataginfo',res.data.tag_info);
+            // content=res.data.body;
+            this.$refs.SelectDialogue.loadCats().then(res2 => {
               // console.log("initCategories().then");
               // console.log(res2);
               if (res2 == 1) {
@@ -313,7 +333,7 @@ export default {
       return window.confirm("当前文章内容未上传，确定要离开？");
     },
     showSelectDialogue(visible) {
-      this.$refs.SelectDialogue.dialogVisible = visible;
+      this.selectVisible = visible;
     },
     change(value, render) {
       if (value != this.lastUpdateBody) {
@@ -343,7 +363,7 @@ export default {
       this.title = ""; //文章标题
       this.id = null;
       this.uploading = false;
-      this.$refs.SelectDialogue.initCategories();
+      this.$refs.SelectDialogue.loadCats();
     }
   },
   watch: {
@@ -416,5 +436,9 @@ export default {
 }
 .articlehead .titleset {
   max-width: 500px;
+}
+.SelectedTagsBar{
+  margin-left: -10px;
+  /* margin-top: 10px; */
 }
 </style>

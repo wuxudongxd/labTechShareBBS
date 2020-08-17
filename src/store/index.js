@@ -6,7 +6,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   modules: {
-    user
+    user:user
   },
   state: {
     back: false
@@ -17,5 +17,5 @@ export default new Vuex.Store({
     }
   },
   actions: {},
-  getters
+  getters,
 });

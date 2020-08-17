@@ -59,7 +59,7 @@ export default {
     LoginDialogue
   },
   mounted() {
-    console.log(this.$store.getters.userinfo);
+    // console.log(this.$store.getters.userinfo);
   },
   methods: {
     ShowLogin() {

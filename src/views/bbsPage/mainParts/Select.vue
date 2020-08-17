@@ -1,22 +1,12 @@
 <template>
   <div class="selectBar">
     <el-card :body-style="{ padding: '0px' }"  shadow="hover">
-      <div v-if="catDetail.validCatCount>0" style="padding: 14px;padding-bottom:4px;" class="bottomShadowBox">
-        <div
-          :key="key.id"
-          v-for="key in catDetail">
-          <div v-if="key.cnt>0">
-            <el-tag type="info" size="mini" class="info_tags hoverShadow">{{key.name}}</el-tag> 
-            <el-tag  size="mini" class="info_tags hoverShadow"
-            :key="key.id"
-            v-for="key in key.tag_chosen">
-            {{key.name}}</el-tag>
-          </div>
-          
-        </div>
-      </div>
-      <hr v-if="catDetail.validCatCount>0" color=#EBEEF5 SIZE=1>
-      <div style="padding: 14px;padding-bottom:14px;" class="bottomShadowBox">
+      <SelectedTagsBar class="SelectedTagsBar"
+        :detailCatData="$refs.SelectDialogue?$refs.SelectDialogue.realTagChosen:{}"
+        :closeable="false"
+        ref="SelectedTagsBar"
+      />
+      <div style="padding: 14px;padding-bottom:14px;" class="">
        <el-button size="mini" 
         type="primary" plain
         @click="showSelectDialogue(true)"
@@ -57,8 +47,16 @@
       
     </el-card>
     <HorizonSpace/>
-    <SelectDialogue ref="SelectDialogue" @updateChosenTags="onUpdateChosenTags"
-    @onTagsLoaded="refreshTags()"/>
+    <!-- <SelectDialogue ref="SelectDialogue" @updateChosenTags="onUpdateChosenTags"
+    @onTagsLoaded="refreshTags()"
+    /> -->
+    <SelectDialogue2
+    v-show="selectDialogueVisible"
+    ref="SelectDialogue"
+    @cancel="cancelSelect"
+    @onTagsLoaded="refreshTags()"
+    @updateChosenTags="onUpdateChosenTags"
+    />
   </div>
 </template>
 
@@ -66,6 +64,8 @@
   import HorizonSpace from '@/views/components/common/HorizonSpace'
   import ArticleBar from './selectParts/ArticleBar'
   import SelectDialogue from '@/views/components/dialogues/WriteSelect'
+  import SelectDialogue2 from '@/views/components/dialogues/SelectDialogue'
+  import SelectedTagsBar from '@/views/components/bars/SelectedTagsBar'
   import {GetArticlesByTags} from "@/network/articles";
   export default {
     name: "selectBar",
@@ -73,12 +73,32 @@
       ArticleBar,
       HorizonSpace,
       SelectDialogue,
+      SelectDialogue2,
+      SelectedTagsBar
     },
     mounted:function(){
-      console.log(this.$route)
-      this.updatePage()
+        // console.log(this.$refs)
       
-      this.$refs.SelectDialogue.initCategories()
+      // this.updatePage()
+      this.$refs.SelectDialogue.loadCats().then(res=>{
+        if(this.$route.query.page)
+        {
+          this.articleCurPage=parseInt(this.$route.query.page);
+        }
+        var tags;
+        if(this.$route.query.hasOwnProperty('tags')){
+          tags=this.$route.query.tags.split(',')
+          // console.log(this.$route.query);
+          // console.log(tags);
+          this.$refs.SelectDialogue.chooseTagWithoutCat(tags)
+          this.onUpdateChosenTags(tags,false);
+        }
+        // console.log(this.articleCurPage)
+        this.getArticlesByTags();
+      })
+
+      
+      // this.$refs.SelectDialogue.initCategories()
       
       
     },
@@ -89,69 +109,97 @@
         img:null,
         value: [],
         articleCurPage:1,
-        articleCount:0,
+        articleCount:100000,
+        
         articleData:[],
+        selectDialogueVisible:false,
         
       }
     },
     watch: {
-      $route(from,to){
+      $refs(to){
+        console.log(to)
+      },
+      $route(to,from){
         if(from.query.page!=to.query.page){
+          console.log("routePageChange")
+          this.articleCurPage=parseInt(to.query.page)
           this.getArticlesByTags();
+
         }
         if(from.query.tags!=to.query.tags){
+          console.log("routeTagChange")
           this.refreshTags()
+          this.getArticlesByTags();
         }
         
       },
+      selectDialogueVisible:function(val) {
+        if (!!val){
+          this.ModalHelper.afterOpen();
+        } else {
+          this.ModalHelper.beforeClose();
+        }
+      }
     },
     methods:{
-      
-      updatePage(){
-        if(this.$route.query.hasOwnProperty("page")&&this.$route.query.page==this.articleCurPage){
-          return;
-        }
+      cancelSelect(){
+        this.selectDialogueVisible=false;
+      },
+      updatePageInRoute(){
         var query1=JSON.parse(JSON.stringify(this.$route.query))
-        query1.page=this.articleCurPage;
+        query1.page=this.articleCurPage;                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
         //console.log(query1)
         this.$router.push({path: this.$route.path,query:query1});
       },
       articlePageChange(toPage){
-        //console.log("articlePageChange")
+        console.log("articlePageChange")
+        console.log(toPage)
         this.articleCurPage=toPage
-        this.updatePage()
+        this.updatePageInRoute();
+        // this.getArticlesByTags();
+        // this.updatePageInRoute()
       },
       showSelectDialogue(visible){
-        this.$refs.SelectDialogue.dialogVisible=visible;
+        this.selectDialogueVisible=visible;
+        // this.$refs.SelectDialogue.dialogVisible=visible;
       },
       getArticlesByTags(){
         GetArticlesByTags(this.chosenTags,this.articleCurPage).then((res=>{
+          // console.log(res)
           switch (res.status) {
+           
             case 200:
               this.articleData=res.data.results;
               this.articleCount=res.data.count;
+              
+              break;
+            case 404:
+              this.articleCurPage=1
+              this.updatePageInRoute()
+              this.getArticlesByTags()
               break;
           }
         }))
       },
       refreshTags(){
         
-        var tags;
-        if(this.$route.query.hasOwnProperty('tags')){
-          tags=this.$route.query.tags.split(',')
-          // console.log(this.$route.query);
-          // console.log(tags);
-          this.$refs.SelectDialogue.chooseTagWithoutCat(tags)
-          this.onUpdateChosenTags(tags,false);
-        }else{
-          tags=[]
-          this.$refs.SelectDialogue.chooseTagWithoutCat(tags)
-          this.onUpdateChosenTags(tags,false);
-        }
-        this.getArticlesByTags();
+        // var tags;
+        // if(this.$route.query.hasOwnProperty('tags')){
+        //   tags=this.$route.query.tags.split(',')
+        //   // console.log(this.$route.query);
+        //   // console.log(tags);
+        //   this.$refs.SelectDialogue.chooseTagWithoutCat(tags)
+        //   this.onUpdateChosenTags(tags,false);
+        // }else{
+        //   tags=[]
+        //   this.$refs.SelectDialogue.chooseTagWithoutCat(tags)
+        //   this.onUpdateChosenTags(tags,false);
+        // }
+        // this.getArticlesByTags();
       },
       onUpdateChosenTags(tags,needJump){//交给SelectDialogue的时候设置
-        //console.log(tags,needJump);
+        console.log("onUpdateChosenTags",tags,needJump);
           var tagChanged;
           if(tags.length!=this.chosenTags.length){//长度不等情况
             tagChanged=true;
@@ -173,38 +221,43 @@
             tagChanged=!same;
             console.log("c",this.chosenTags);
           }
-          console.log(tagChanged);
+          console.log("tagChanged",tagChanged);
           if(tagChanged){
-            if(needJump){
-              if(tags.length>0){
+            // if(true){
+              this.chosenTags=tags;
+              if(needJump!=false){
+                if(tags.length>0){
                 var query1=JSON.parse(JSON.stringify(this.$route.query))
                 query1.tags=tags+"";
                 //console.log(query1)
                 this.$router.push({path: this.$route.path,query:query1});
                 //this.$router.push({ path: "/bbs/select/?tags="+tags});
-              }else{
-                var query1=JSON.parse(JSON.stringify(this.$route.query))
-                delete query1.tags
-                //console.log(query1)
-                this.$router.push({path: this.$route.path,query:query1});
-              }
-            }else{
-              this.chosenTags=tags;
-              this.catDetail=this.$refs.SelectDialogue.categories;
-              //console.log(this.catDetail)
-              this.catDetail.validCatCount=this.catDetail.length;
-              for(var cat of this.catDetail){
-                var cnt=0;
-                for(var index in cat.tag_chosen){
-                  cnt++;
+                }else{
+                  var query1=JSON.parse(JSON.stringify(this.$route.query))
+                  delete query1.tags
+                  //console.log(query1)
+                  this.$router.push({path: this.$route.path,query:query1});
                 }
-                if(cnt==0){
-                  this.catDetail.validCatCount--;
-                }
-                cat.cnt=cnt
               }
-              this.$forceUpdate();
-            }
+              
+            // }
+            // else{
+            //   this.chosenTags=tags;
+            //   this.catDetail=this.$refs.SelectDialogue.categories;
+            //   //console.log(this.catDetail)
+            //   this.catDetail.validCatCount=this.catDetail.length;
+            //   for(var cat of this.catDetail){
+            //     var cnt=0;
+            //     for(var index in cat.tag_chosen){
+            //       cnt++;
+            //     }
+            //     if(cnt==0){
+            //       this.catDetail.validCatCount--;
+            //     }
+            //     cat.cnt=cnt
+            //   }
+            //   this.$forceUpdate();
+            // }
             
           }
         
@@ -226,5 +279,9 @@
   .info_tags{
     margin-right: 10px;
     margin-bottom: 10px;
+  }
+  .SelectedTagsBar{
+    margin-top:4px ;
+    margin-left:4px ;
   }
 </style>
