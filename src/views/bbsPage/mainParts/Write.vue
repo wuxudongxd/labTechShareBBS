@@ -375,6 +375,13 @@ export default {
         this.titleChanged = false;
       }
       this.updateHasOneChanged();
+    },
+    selectVisible:function(val) {
+      if (!!val){
+        this.ModalHelper.afterOpen();
+      } else {
+        this.ModalHelper.beforeClose();
+      }
     }
   },
   beforeRouteLeave(to, from, next) {
