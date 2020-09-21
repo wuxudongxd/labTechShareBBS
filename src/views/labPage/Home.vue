@@ -4,7 +4,7 @@
       <el-carousel trigger="click" height="400px">
         <!-- 图片浏览框 -->
         <el-carousel-item v-for="item in img_list" :key="item.id">
-          <img style="width:100%;	height:auto,z-index:10" v-bind:src="item.idView" alt="none" />
+          <img style="width:100%;	height:auto; z-index:10" v-bind:src="item.idView" alt="none" />
           <!-- 图片的格式还需要进行调整 -->
         </el-carousel-item>
       </el-carousel>

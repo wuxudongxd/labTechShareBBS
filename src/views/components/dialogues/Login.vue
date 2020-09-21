@@ -129,11 +129,12 @@ export default {
           }
           this.gettingCode = false;
         });
-      } else {
-        this.$alert("邮箱无效，请填写正确格式的邮箱", "警告", {
-          confirmButtonText: "确定"
-        });
       }
+      // else {
+      //   this.$alert("邮箱无效，请填写正确格式的邮箱", "警告", {
+      //     confirmButtonText: "确定"
+      //   });
+      // } //TODO 容易造成错误，先注释掉，之后修改
     },
     onClose() {
       //关闭dialogue时清楚文本框

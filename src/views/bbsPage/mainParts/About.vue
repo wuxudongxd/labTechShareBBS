@@ -5,8 +5,9 @@
         <i class="el-icon-office-building"></i> 关于建立
       </div>
       <div style="padding: 14px;">
-        <p>由 <el-link type="primary" @click="gotoLab(1)">易控实验室</el-link> 和 电子爱好者协会 合作建立，基于 vue 和 django。</p>
-      
+        由 <el-link type="primary" @click="gotoLab(1)">易控实验室</el-link>和
+        电子爱好者协会 合作建立，基于 vue 和 django。
+
         <p>开发者：前端：<el-link type="primary" @click="gotoUserPage(9)">hanbaoaaa</el-link>，后端：<el-link type="primary" @click="gotoUserPage(8)">东东</el-link></p>
       </div>
     </el-card>
@@ -47,7 +48,7 @@
                 <h4>修复了图片尺寸与实际不符合的bug，</h4>
               </el-card>
             </div>
-            
+
           </el-timeline-item>
         </el-timeline>
       </div>
@@ -59,7 +60,7 @@
                 <h4>修复read页面切换不更新的bug</h4>
               </el-card>
             </div>
-            
+
           </el-timeline-item>
         </el-timeline>
       </div>
@@ -71,7 +72,7 @@
                 <h4>修复了若干界面bug，代码结构整理，加入了打卡</h4>
               </el-card>
             </div>
-            
+
           </el-timeline-item>
         </el-timeline>
       </div>
@@ -83,7 +84,7 @@
                 <h4>在前后端的共同努力下，网站终于初见雏形了！</h4>
               </el-card>
             </div>
-            
+
           </el-timeline-item>
         </el-timeline>
       </div>
@@ -95,7 +96,7 @@
                 <h4>前端🍔咕咕一个多月，继续建设</h4>
               </el-card>
             </div>
-            
+
           </el-timeline-item>
         </el-timeline>
       </div>
@@ -107,7 +108,7 @@
                 <h4>前端🍔咕咕一周，继续建设</h4>
               </el-card>
             </div>
-            
+
           </el-timeline-item>
         </el-timeline>
       </div>
@@ -119,12 +120,12 @@
                 <h4>开始建设</h4>
               </el-card>
             </div>
-            
+
           </el-timeline-item>
         </el-timeline>
       </div>
     </el-card>
-    
+
   </div>
 </template>
 
@@ -133,7 +134,7 @@
   export default {
     name: "selectBar",
     components: {
-      
+
       HorizonSpace,
     },
     data(){
@@ -159,7 +160,7 @@
             this.$router.push({ path: "/lab" });
             break;
         }
-      }
+      },
     }
   }
 </script>
