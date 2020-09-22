@@ -33,7 +33,7 @@ jobs: # 工作流
         # 将编译后的博客文件推送到指定仓库
         run: |
           npm install && npm run build
-          cd docs/.vuepress/dist && git init
+          cd dist/ && git init
           git config user.name "$GIT_NAME"
           git config user.email "$GIT_EMAIL"
           git add -A
